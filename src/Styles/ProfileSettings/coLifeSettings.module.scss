@@ -1,0 +1,24 @@
+.co-life {
+  margin-top: 20px;
+  width: 100%;
+
+  .co-life-options {
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+
+    .co-life-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+
+      label {
+        margin-bottom: 5px;
+      }
+
+      input[type="range"] {
+        width: 90%;
+      }
+    }
+  }
+}
