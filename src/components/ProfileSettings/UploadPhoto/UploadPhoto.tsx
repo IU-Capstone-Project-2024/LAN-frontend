@@ -65,11 +65,11 @@ const UploadPhoto: FC = () => {
           {profileState.photos.length < 3 && (
               new Array(3 - profile.photos.length).fill(null).map((_, index) => (
                       <div key={index + profile.photos.length} className={styles['photo-slot']}>
-                        <label htmlFor="photo-upload-input" className={styles['photo-upload-label']}>
+                        <label htmlFor={`photo-upload-input-${index + profile.photos.length}`} className={styles['photo-upload-label']}>
                           <span>+</span>
                         </label>
                         <input
-                            id="photo-upload-input"
+                            id={`photo-upload-input-${index + profile.photos.length}`}
                             type="file"
                             accept="image/*"
                             onChange={handlePhotoChange}

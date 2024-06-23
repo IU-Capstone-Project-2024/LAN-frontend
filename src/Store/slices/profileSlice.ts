@@ -23,9 +23,9 @@ interface ProfileState {
 
 const initialState: ProfileState = {
   photos: [],
-  name: '',
-  age: 0,
-  religion: '',
+  name: 'Name',
+  age: 20,
+  religion: 'Religion',
   about: '',
   interests: [],
   coLife: {
@@ -68,6 +68,15 @@ const profileSlice = createSlice({
     setSocialLinks(state, action: PayloadAction<string[]>) {
       state.socialLinks = action.payload;
     },
+    addSocialLink(state) {
+      state.socialLinks.push('');
+    },
+    removeSocialLink(state, action: PayloadAction<number>) {
+      state.socialLinks.splice(action.payload, 1);
+    },
+    updateSocialLink(state, action: PayloadAction<{ index: number, link: string }>) {
+      state.socialLinks[action.payload.index] = action.payload.link;
+    },
     setPhotos(state, action: PayloadAction<string[]>) {
       state.photos = action.payload;
     },
@@ -101,7 +110,10 @@ export const {
   setInterests,
   setCoLife,
   setSocialLinks,
-    setPhotos,
+  addSocialLink,
+  removeSocialLink,
+  updateSocialLink,
+  setPhotos,
   addPhoto,
   removePhoto,
   setMainPhoto,

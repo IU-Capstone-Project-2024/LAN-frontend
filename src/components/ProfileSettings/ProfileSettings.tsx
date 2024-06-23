@@ -6,7 +6,15 @@ import { useRouter } from 'next/navigation';
 import styles from '../../Styles/ProfileSettings/profileSettings.module.scss';
 import {RootState} from "@/Store/store";
 import UploadPhoto from "@/components/ProfileSettings/UploadPhoto/UploadPhoto";
-import {setAbout, setAge, setName, setReligion, setSocialLinks, setInterests} from "@/Store/slices/profileSlice";
+import {
+  setAbout,
+  setAge,
+  setName,
+  setReligion,
+  setSocialLinks,
+  setInterests,
+  updateSocialLink, addSocialLink, removeSocialLink
+} from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/ProfileSettings/ModalPhoto/ModalPhoto";
 import CoLifeSettings from "@/components/ProfileSettings/CoLife/CoLife";
 
@@ -75,6 +83,18 @@ const ProfileSettings: React.FC = () => {
     dispatch(setInterests(updatedInterests));
   };
 
+  const handleSocialLinkChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
+    dispatch(updateSocialLink({ index, link: e.target.value }));
+  };
+
+  const handleAddSocialLink = () => {
+    dispatch(addSocialLink());
+  };
+
+  const handleRemoveSocialLink = (index: number) => {
+    dispatch(removeSocialLink(index));
+  };
+
 
   return (
       <div className={styles['profile-settings']}>
@@ -116,7 +136,17 @@ const ProfileSettings: React.FC = () => {
         <CoLifeSettings />
         <div>
           <label>Соц. сети</label>
-          <input type="text" name="socialLinks" value={profileState.socialLinks[0]} onChange={handleInputChange}/>
+          {profile.socialLinks.map((link, index) => (
+              <div key={index} className={styles['social-link']}>
+                <input
+                    type="text"
+                    value={link}
+                    onChange={(e) => handleSocialLinkChange(e, index)}
+                />
+                <button type="button" onClick={() => handleRemoveSocialLink(index)}>Удалить</button>
+              </div>
+          ))}
+          <button type="button" onClick={handleAddSocialLink}>Добавить еще соц. сеть</button>
         </div>
         <button onClick={handleSave}>Сохранить</button>
       </div>

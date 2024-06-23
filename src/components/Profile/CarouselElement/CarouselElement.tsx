@@ -4,21 +4,26 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from "@/Styles/Profile/profile.module.scss";
 import {useSelector} from "react-redux";
 import {RootState} from "@/Store/store";
-
+import Image from "next/image";
 
 const CarouselElement: FC = () => {
   const profile = useSelector((state: RootState) => state.profile);
 
   return (
       <div>
-        <Carousel showThumbs={false} showArrows={false} showStatus={false}>
-          {profile.photos.map((photo, index) => (
-              <div key={index}>
-                <img src={photo} alt={`Photo ${index + 1}`} className={styles["img"]}/>
-                <div className={styles['image-gradient']}/>
-              </div>
-          ))}
-        </Carousel>
+        {profile.photos.length > 0 ? (
+            <Carousel showThumbs={false} showArrows={false} showStatus={false}>
+              {profile.photos.map((photo, index) => (
+                  <div key={index} className={styles['carousel-slide']}>
+                    <img src={photo} alt={`Photo ${index + 1}`} />
+                    <div className={styles['image-gradient']} />
+                  </div>
+              ))}
+            </Carousel>
+        ) : (
+              <Image src='/default_avatar.png' alt="Placeholder" width={600} height={600}/>
+
+        )}
       </div>
   );
 };
