@@ -1,7 +1,7 @@
 /** @type {import('next').NextConfig} */
 const nextConfig = {
-    ReactStrictMode: true,
-    BasePath: 'LAN-frontend/',
+    reactStrictMode: true,
+    basePath: 'LAN-frontend/',
 };
 
 export default nextConfig;

@@ -13,25 +13,29 @@ import Image from "next/image";
 const Profile: React.FC = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const router = useRouter();
-  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const handleEditProfile = () => {
     router.push('/LAN-frontend/profile_settings');
   };
 
   const truncateLink = (link: string) => {
-    if (window.innerWidth <= 393) {
+    if (screenWidth <= 393) {
       return link.length > 27 ? `${link.slice(0, 27)}...` : link;
     } else {
       return link.length > 35 ? `${link.slice(0, 35)}...` : link;
     }
   };
+
   useEffect(() => {
-    const handleResize = () => setScreenWidth(window.innerWidth);
+    if (typeof window !== 'undefined') {
+      setScreenWidth(window.innerWidth);
 
-    window.addEventListener('resize', handleResize);
+      const handleResize = () => setScreenWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
 
-    return () => window.removeEventListener('resize', handleResize);
+      return () => window.removeEventListener('resize', handleResize);
+    }
   }, []);
 
   return (
