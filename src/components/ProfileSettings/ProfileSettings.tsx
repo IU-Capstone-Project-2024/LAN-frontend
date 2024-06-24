@@ -68,7 +68,7 @@ const ProfileSettings: React.FC = () => {
   };
 
   const handleSave = () => {
-    router.push('/');
+    router.push('/LAN-frontend/profile');
   };
 
   const handleInterestClick = (interest: string) => {

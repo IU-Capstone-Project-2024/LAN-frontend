@@ -1,7 +1,7 @@
 import React from 'react';
 import Profile from '../../components/Profile/Profile';
 
-const Home: React.FC = () => {
+const ProfilePage: React.FC = () => {
   return (
       <div>
         <Profile />
@@ -9,4 +9,4 @@ const Home: React.FC = () => {
   );
 };
 
-export default Home;
+export default ProfilePage;
