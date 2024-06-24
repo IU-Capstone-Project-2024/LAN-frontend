@@ -46,7 +46,7 @@ const Profile: React.FC = () => {
               Профиль
             </span>
             <button className={styles['icon']} onClick={handleEditProfile}>
-              <Image src='/Settings_icon.svg' alt='Настройки' width={30} height={30} />
+              <Image src='src/Icons/Settings_icon.svg' alt='Настройки' width={30} height={30} />
             </button>
           </div>
           <CarouselElement/>
