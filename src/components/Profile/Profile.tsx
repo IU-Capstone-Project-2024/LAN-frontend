@@ -16,7 +16,7 @@ const Profile: React.FC = () => {
   const [screenWidth, setScreenWidth] = useState<number>(0);
 
   const handleEditProfile = () => {
-    router.push('/LAN-frontend/profile_settings');
+    router.push('/profile_settings');
   };
 
   const truncateLink = (link: string) => {
