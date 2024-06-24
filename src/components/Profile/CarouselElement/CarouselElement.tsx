@@ -21,7 +21,7 @@ const CarouselElement: FC = () => {
               ))}
             </Carousel>
         ) : (
-              <Image src='src/Icons/default_avatar.png' alt="Placeholder" width={600} height={600}/>
+              <Image src='/default_avatar.png' alt="Placeholder" width={600} height={600}/>
 
         )}
       </div>

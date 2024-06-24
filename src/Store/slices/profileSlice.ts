@@ -23,9 +23,9 @@ interface ProfileState {
 
 const initialState: ProfileState = {
   photos: [],
-  name: 'Name',
-  age: 20,
-  religion: 'Religion',
+  name: '',
+  age: 0,
+  religion: '',
   about: '',
   interests: [],
   coLife: {

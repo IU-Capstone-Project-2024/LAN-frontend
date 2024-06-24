@@ -38,6 +38,24 @@ const Profile: React.FC = () => {
     }
   }, []);
 
+  const defaultAge = 'Возраст не указан';
+  const defaultReligion = 'Религия не указана';
+
+  const renderAgeReligion = () => {
+    const age = profile.age || defaultAge;
+    const religion = profile.religion || defaultReligion;
+
+    if (!profile.age && !profile.religion) {
+      return <p className={styles['age']}>0 лет</p>;
+    }
+
+    if (profile.age && !profile.religion) {
+      return <p className={styles['age']}>{age} лет</p>;
+    }
+
+    return <p className={styles['age']}>{age} лет | {religion}</p>;
+  };
+
   return (
       <div className={styles.profile}>
         <div className={styles['header-container']}>
@@ -46,13 +64,17 @@ const Profile: React.FC = () => {
               Профиль
             </span>
             <button className={styles['icon']} onClick={handleEditProfile}>
-              <Image src='src/Icons/Settings_icon.svg' alt='Настройки' width={30} height={30} />
+              <Image src='/Settings_icon.svg' alt='Настройки' width={30} height={30} />
             </button>
           </div>
           <CarouselElement/>
         </div>
-        <h1>{profile.name}</h1>
-        <p className={styles['age']}>{profile.age} лет | {profile.religion}</p>
+        { profile.name ? (
+            <h1>{profile.name}</h1>
+        ) : (
+            <h1>Имя</h1>
+        )}
+        {renderAgeReligion()}
         { profile.about && (
             <div className={styles["about"]}>
               <h2>О себе</h2>
