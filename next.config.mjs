@@ -3,22 +3,11 @@ const nextConfig = {
     reactStrictMode: true,
     output: "export",
     swcMinify: true,
-    webpack: (config, {isServer}) => {
-        if (isServer) {
-            config.module.rules.push({
-                test: /\.(png|jpe?g|gif|svg)$/,
-                use: {
-                    loader: 'file-loader',
-                    options: {
-                        publicPath: '/_next/static/images',
-                        outputPath: 'static/images',
-                        name: '[name].[hash].[ext]',
-                        esModule: false,
-                    },
-                },
-            });
-        }
-
+    webpack: (config) => {
+        config.module.rules.push({
+            test: /\.svg$/,
+            use: ["@svgr/webpack"],
+        });
         return config;
     }
 };
