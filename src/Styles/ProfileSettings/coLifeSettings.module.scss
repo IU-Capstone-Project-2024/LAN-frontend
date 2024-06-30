@@ -1,23 +1,77 @@
 .co-life {
-  margin-top: 20px;
+  margin-top: 40px;
   width: 100%;
+  .title {
+    margin-left: 30px;
+    font-size: 20px;
+  }
 
   .co-life-options {
     display: flex;
     flex-direction: column;
-    gap: 20px;
+    gap: 25px;
+    margin-top: 20px;
 
+    span {
+      color: #4AF11F; /* Изменить цвет на зеленый */
+      white-space: pre-wrap; /* Позволить перенос текста */
+    }
     .co-life-item {
       display: flex;
       flex-direction: column;
       align-items: center;
+      width: 100%;
 
       label {
         margin-bottom: 5px;
+        color: #ffffff; // Assuming white color for labels
       }
 
       input[type="range"] {
-        width: 90%;
+        width: 85%;
+        -webkit-appearance: none;
+        appearance: none;
+        background: #8E94A2;
+        height: 4px;
+        outline: none;
+        transition: opacity .2s;
+        margin-top: 10px;
+      }
+
+      input[type="range"]::-webkit-slider-thumb {
+        -webkit-appearance: none;
+        appearance: none;
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #4AF11F; // Green color for thumb
+        cursor: pointer;
+      }
+
+      input[type="range"]::-moz-range-thumb {
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: #4AF11F; // Green color for thumb
+        cursor: pointer;
+      }
+
+      .labels {
+        display: flex;
+        justify-content: space-between;
+        width: 95%;
+        margin-top: 5px;
+        padding: 0 20px; /* Подвинуть слова от краев к середине на 2px */
+
+        .leftLabel {
+          color: #8C8D92; // White color for left label
+          text-align: left;
+        }
+
+        .rightLabel {
+          color: #8C8D92; // White color for right label
+          text-align: right;
+        }
       }
     }
   }

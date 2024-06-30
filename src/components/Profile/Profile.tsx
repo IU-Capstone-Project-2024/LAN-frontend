@@ -1,6 +1,6 @@
 "use client"
 
-import React, {useEffect, useState} from 'react';
+import React, {FC, useEffect, useState} from 'react';
 import { useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { useRouter } from 'next/navigation';
@@ -10,7 +10,7 @@ import CarouselElement from "@/components/Profile/CarouselElement/CarouselElemen
 import ReadOnlySlider from "@/components/Profile/ReadOnlySlider/ReadOnlySlider";
 import Image from "next/image";
 
-const Profile: React.FC = () => {
+const Profile: FC = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const router = useRouter();
   const [screenWidth, setScreenWidth] = useState<number>(0);

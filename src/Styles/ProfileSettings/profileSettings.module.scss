@@ -3,111 +3,29 @@
   flex-flow: column;
   align-items: center;
   margin-top: 27px ;
+
+  .addButton {
+    background: no-repeat center center;
+    background-size: contain;
+    border: none;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 0;
+  }
+
   h2{
     font-size: 25px;
     align-self: flex-start;
     margin-left: 21px;
   }
+
   .gradient{
     width: 100vw;
     height: 482px;
     background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 47.72%), lightgray 0.884px -19.281px / 98.664% 121.966% no-repeat;
   }
-  .photo-upload {
-    display: flex;
-    margin-top: 21px;
-    gap: 30px;
-    margin-bottom: 20px;
-
-    .photo-slot {
-      width: 93px;
-      height: 93px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      background-color: #444;
-      border-radius: 8px;
-      overflow: hidden;
-      position: relative;
-
-      img {
-        width: 100%;
-        height: 100%;
-        object-fit: cover;
-      }
-
-      .photo-upload-label {
-        width: 100%;
-        height: 100%;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        cursor: pointer;
-        font-size: 36px;
-        color: #fff;
-        background-color: #444;
-        border-radius: 8px;
-        transition: background-color 0.3s;
-
-        &:hover {
-          background-color: #555;
-        }
-      }
-    }
-  }
-
-  .crop-container {
-    margin-top: 20px;
-
-    .cropper-container {
-      width: 100%;
-      height: 400px;
-    }
-
-    button {
-      margin-top: 10px;
-      background-color: #4caf50;
-      color: white;
-      padding: 10px 20px;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
-      font-size: 16px;
-
-      &:hover {
-        background-color: #45a049;
-      }
-    }
-  }
-  .interests {
-    margin-top: 20px;
-
-
-    .interests-options {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-
-      button {
-        background: #444;
-        color: #fff;
-        border: none;
-        border-radius: 5px;
-        padding: 5px 10px;
-        cursor: pointer;
-        transition: background-color 0.3s;
-
-        &.selected {
-          background: #4caf50;
-        }
-
-        &:hover {
-          background: #555;
-        }
-      }
-    }
-  }
-
   label {
     align-self: flex-start;
   }
@@ -117,19 +35,168 @@
     width: calc(100% - 40px); /* Adjust this value as needed */
     margin: 10px 20px;
   }
+}
 
-  button {
-    margin-top: 20px;
-    background-color: #4caf50;
-    color: white;
-    padding: 10px 20px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+
+.inputContainer {
+  margin-bottom: 20px;
+  width: 100%;
+  display: flex;
+
+  label {
+    display: none;
     font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+  }
 
-    &:hover {
-      background-color: #45a049;
+  input[type='text'] {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #4caf50;
+    }
+
+    &::placeholder {
+      text-align: center;
+      color: #999;
     }
   }
 }
+.ageAndReligion {
+  display: flex;
+  margin-left: 22px;
+}
+
+.ageContainer{
+
+}
+.ageContainer,
+.religionContainer {
+  display: flex;
+  
+  label {
+    font-size: 14px;
+    color: #8E94A2;
+    margin-top: 20px;
+  }
+
+
+  input {
+    padding: 10px 10px;
+    font-size: 14px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #4caf50;
+      text-align: center;
+    }
+
+    &::placeholder {
+      text-align: center;
+      color: #999;
+    }
+  }
+}
+
+.save_button {
+  margin-top: 20px;
+  background: #4AF11F;
+  color: #2D3037;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4%;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.label_soc_set {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  position: relative;
+  align-items: flex-start;
+
+  label {
+    display: flex;
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+
+  .socialLinksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    width: 100%; /* Ширина контейнера */
+    margin-bottom: 10px; /* Промежуток между элементами */
+  }
+
+  .social-link input {
+    padding: 8px; /* Отступы внутри поля ввода */
+    font-size: 16px; /* Размер шрифта */
+    border: 2px solid #D5DBE9; /* Рамка */
+    border-radius: 25px; /* Закругленные углы */
+    outline: none; /* Убираем контур фокуса */
+    width: 90%; /* Ширина поля ввода */
+    box-sizing: border-box; /* Учитываем рамку и внутренние отступы */
+  }
+
+  .delete_button {
+    background: no-repeat center center;
+    background-size: contain;
+    width: 36px; /* Ширина кнопки */
+    height: 36px; /* Высота кнопки */
+    border: none; /* Убираем рамку */
+    cursor: pointer; /* Курсор при наведении */
+    margin-left: 10px; /* Отступ слева */
+  }
+
+  .delete_button:hover {
+    opacity: 0.8; /* Прозрачность при наведении */
+  }
+
+  .addButton {
+    background: no-repeat center center;
+    background-size: contain;
+    border: none;
+    width: 32px; /* Ширина кнопки */
+    height: 32px; /* Высота кнопки */
+    cursor: pointer;
+    margin-top: 10px; /* Отступ сверху */
+    align-self: center; /* Выравнивание по центру относительно контейнера */
+
+    &:hover {
+      opacity: 0.8; /* Прозрачность при наведении */
+    }
+  }
+}
+
+
+
+
+
+

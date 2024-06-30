@@ -1,0 +1,36 @@
+.interests {
+  margin-top: 10px;
+
+  label {
+    margin-left: 30px;
+    font-size: 20px;
+  }
+
+  .interests-options {
+    margin-left: 11px;
+    margin-right: 0;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    padding: 10px 4%;
+    font-size: 15px;
+
+    button {
+      flex: 0 0 auto;
+      margin: 7.5px 0;
+      color: #8C8D92;
+      border: 2px solid #D5DBE9;
+      border-radius: 25px;
+      cursor: pointer;
+      padding: 10px 22px;
+      background: none;
+
+      &.selected {
+        border: 2px solid transparent;
+        background: linear-gradient(#2D3037, #2D3037) padding-box,
+        linear-gradient(#4AF11F, #7640EE) border-box;
+        color: #fff;
+      }
+    }
+  }
+}

@@ -1,10 +1,10 @@
 "use client"
 
-import React, {useState, ChangeEvent} from 'react';
-import {useDispatch, useSelector} from 'react-redux';
+import React, { useState, ChangeEvent } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import styles from '../../Styles/ProfileSettings/profileSettings.module.scss';
-import {RootState} from "@/Store/store";
+import { RootState } from "@/Store/store";
 import UploadPhoto from "@/components/ProfileSettings/UploadPhoto/UploadPhoto";
 import {
   setAbout,
@@ -17,13 +17,14 @@ import {
 } from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/ProfileSettings/ModalPhoto/ModalPhoto";
 import CoLifeSettings from "@/components/ProfileSettings/CoLife/CoLife";
+import Interests from "@/components/ProfileSettings/Interests/Interests";
+import About from "@/components/ProfileSettings/About/About";
+import Image from "next/image";
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
-
-  const interestsOptions = ['Музыка', 'Спорт', 'Книги', 'Социальная жизнь', 'Животные', 'Бизнес', 'Саморазвитие'];
 
   const [profileState, setProfileState] = useState({
     name: profile.name,
@@ -71,17 +72,6 @@ const ProfileSettings: React.FC = () => {
     router.push('/');
   };
 
-  const handleInterestClick = (interest: string) => {
-    let updatedInterests = [...profile.interests];
-    if (updatedInterests.includes(interest)) {
-      updatedInterests = updatedInterests.filter((i) => i !== interest);
-    } else {
-      if (updatedInterests.length < 3) {
-        updatedInterests.push(interest);
-      }
-    }
-    dispatch(setInterests(updatedInterests));
-  };
 
   const handleSocialLinkChange = (e: ChangeEvent<HTMLInputElement>, index: number) => {
     dispatch(updateSocialLink({ index, link: e.target.value }));
@@ -97,59 +87,43 @@ const ProfileSettings: React.FC = () => {
 
 
   return (
-      <div className={styles['profile-settings']}>
-        <h2>Настройки профиля</h2>
-        <UploadPhoto></UploadPhoto>
-        <ModalPhoto show={profile.showModal}></ModalPhoto>
-        <div>
-          <label>Имя</label>
-          <input type="text" name="name" value={profileState.name} onChange={handleInputChange}/>
-        </div>
-        <div>
-          <div>
-            <label>Возраст</label>
-            <input type="text" name="age" value={profileState.age} onChange={handleInputChange}/>
-          </div>
-          <div>
-            <label>Религия</label>
-            <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange}/>
-          </div>
-        </div>
-        <div>
-          <label>О себе</label>
-          <textarea name="about" value={profileState.about} onChange={handleTextareaChange}/>
-        </div>
-        <div className={styles['interests']}>
-          <label>Интересы (выберите от 3-х)</label>
-          <div className={styles['interests-options']}>
-            {interestsOptions.map((interest) => (
-                <button
-                    key={interest}
-                    className={profile.interests.includes(interest) ? styles['selected'] : ''}
-                    onClick={() => handleInterestClick(interest)}
-                >
-                  {interest}
-                </button>
-            ))}
-          </div>
-        </div>
-        <CoLifeSettings />
-        <div>
-          <label>Соц. сети</label>
-          {profile.socialLinks.map((link, index) => (
-              <div key={index} className={styles['social-link']}>
-                <input
-                    type="text"
-                    value={link}
-                    onChange={(e) => handleSocialLinkChange(e, index)}
-                />
-                <button type="button" onClick={() => handleRemoveSocialLink(index)}>Удалить</button>
-              </div>
-          ))}
-          <button type="button" onClick={handleAddSocialLink}>Добавить еще соц. сеть</button>
-        </div>
-        <button onClick={handleSave}>Сохранить</button>
+    <div className={styles['profile-settings']}>
+      <h2>Настройки профиля</h2>
+      <UploadPhoto></UploadPhoto>
+      <ModalPhoto show={profile.showModal}></ModalPhoto>
+      <div className={styles.inputContainer}>
+        <label>Имя</label>
+        <input type="text" name="name" value={profileState.name} onChange={handleInputChange} placeholder='Имя' />
       </div>
+      <div className={styles.ageAndReligion}>
+        <div className={styles.ageContainer}>
+          <label>Возраст:</label>
+          <input type="text" name="age" value={profileState.age} onChange={handleInputChange} placeholder='25 лет' />
+        </div>
+        <div className={styles.religionContainer}>
+          <label>Религия:</label>
+          <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange} placeholder='Атеист' />
+        </div>
+      </div>
+      <About></About>
+      <Interests></Interests>
+      <CoLifeSettings />
+      <div className={styles.label_soc_set}>
+        <label>Соц. сети</label>
+        {profile.socialLinks.map((link, index) => (
+          <div key={index} className={styles['social-link']}>
+            <input
+              type="text"
+              value={link}
+              onChange={(e) => handleSocialLinkChange(e, index)}
+            />
+            <button className={styles.delete_button} type="button" onClick={() => handleRemoveSocialLink(index)}> <Image src={'/trash.svg'} alt={'Trash'} width={20} height={20}/> </button>
+          </div>
+        ))}
+        <button className={styles.addButton} type="button" onClick={handleAddSocialLink}><Image src={'/add_new_social_media.svg'} alt={'Trash'} width={30} height={30}/></button>
+      </div>
+      <button className={styles.save_button} onClick={handleSave}>Сохранить</button>
+    </div>
   );
 };
 
