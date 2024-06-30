@@ -1,6 +1,7 @@
 import {FC} from 'react';
 import {useDispatch, useSelector} from "react-redux";
 import styles from '@/Styles/ProfileSettings/modal.module.scss';
+import Modal from 'react-modal';
 import {
   removePhoto,
   setMainPhoto,
@@ -43,17 +44,24 @@ const ModalPhoto: FC<ModalProps> = ({show}) => {
     dispatch(setModalPhoto(null));
   };
 
+  const isMainPhoto = profile.photos[0] === profile.modalPhoto;
+
   return (
-      <>
-        <div className={styles.modal}>
-          <div className={styles['modal-content']}>
-            <h3>Выберите действие</h3>
-            <button onClick={handleSetMainPhoto}>Сделать главным</button>
+      <Modal
+          isOpen={show}
+          onRequestClose={handleCloseModal}
+          className={styles.modal}
+          overlayClassName={styles.overlay}
+      >
+        <div className={styles['modal-content']}>
+          <h3>Выберите действие</h3>
+          {!isMainPhoto && <button className={styles['main-button']} onClick={handleSetMainPhoto}>Сделать главным</button>}
+          <div className={styles['button-group']}>
             <button onClick={handleRemovePhoto}>Удалить</button>
             <button onClick={handleCloseModal}>Отмена</button>
           </div>
         </div>
-      </>
+      </Modal>
   );
 };
 
