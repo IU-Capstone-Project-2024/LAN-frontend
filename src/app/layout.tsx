@@ -16,7 +16,10 @@ export default function RootLayout({
     <html lang="en">
       <Provider store={store}>
         <body className={montserrat.className}>
-          <Layout>{children}</Layout>
+        <div>
+          {children}
+        </div>
+          <Layout/>
         </body>
       </Provider>
     </html>
