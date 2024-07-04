@@ -69,7 +69,7 @@ const ProfileSettings: React.FC = () => {
   };
 
   const handleSave = () => {
-    router.push('/');
+    router.push('/profile');
   };
 
 
@@ -84,6 +84,8 @@ const ProfileSettings: React.FC = () => {
   const handleRemoveSocialLink = (index: number) => {
     dispatch(removeSocialLink(index));
   };
+
+  
 
 
   return (
