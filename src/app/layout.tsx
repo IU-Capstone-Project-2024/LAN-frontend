@@ -13,9 +13,11 @@ export default function RootLayout({
 }: Readonly<{
   children: React.ReactNode;
 }>) {
-// @ts-ignore
-  const tg= window.Telegram.WebApp;
+
+
   useEffect(()=> {
+    // @ts-ignore
+    const tg= window.Telegram.WebApp;
     tg.ready();
       })
 
