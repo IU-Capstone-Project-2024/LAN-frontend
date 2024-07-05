@@ -3,15 +3,22 @@ import { Montserrat } from "next/font/google";
 import "@/app/globals.css";
 import { Provider } from "react-redux";
 import { store } from "@/Store/store";
-import Layout from "@/components/Layout/Layout"; // Ensure correct import path
+import Layout from "@/components/Layout/Layout";
+import {useEffect} from "react";
+
 
 const montserrat = Montserrat({ subsets: ["latin"] });
-
 export default function RootLayout({
   children,
 }: Readonly<{
   children: React.ReactNode;
 }>) {
+// @ts-ignore
+  const tg= window.Telegram.WebApp;
+  useEffect(()=> {
+    tg.ready();
+      })
+
   return (
     <html lang="en">
       <head>
