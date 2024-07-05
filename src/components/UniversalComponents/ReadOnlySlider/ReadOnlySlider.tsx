@@ -1,5 +1,5 @@
 import React from 'react';
-import styles from '@/Styles/Profile/ReadOnlySlider.module.scss';
+import styles from '@/Styles/Universal/ReadOnlySlider.module.scss';
 
 interface ReadOnlySliderProps {
   labelStart: string;
