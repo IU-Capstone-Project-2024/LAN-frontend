@@ -1,0 +1,64 @@
+[
+  {
+    "id": 1,
+    "photos": [
+        "https://imgholder.ru/600x600/8493a8/adb9ca&text=IMAGE+HOLDER+1&font=kelson"
+    ],
+    "name": "Кира Ёшикаге",
+    "age": 33,
+    "about": "Мой дом находится в северо-восточной части Морио, в районе поместий...",
+    "interests": ["Музыка", "Спорт", "Книги"],
+    "coLife": {
+      "nightOwl": 1,
+      "cleanliness": 2,
+      "noiseLevel": 0,
+      "alcohol": 1,
+      "smoking": 2
+    },
+    "socialLinks": [
+      "https://web.telegram.org/darriyana"
+    ]
+  },
+  {
+    "id": 2,
+    "photos": [
+      "https://imgholder.ru/600x600/8493a8/adb9ca&text=IMAGE+HOLDER+2&font=kelson"
+    ],
+    "name": "Кира",
+    "age": 30,
+    "religion": "Атеист",
+    "about": "Мой дом находится в северо-восточной части Морио, в районе поместий...",
+    "interests": ["Музыка", "Спорт", "Книги"],
+    "coLife": {
+      "nightOwl": 2,
+      "cleanliness": 0,
+      "noiseLevel": 1,
+      "alcohol": 1,
+      "smoking": 2
+    },
+    "socialLinks": [
+      "https://web.telegram.org/darriyana"
+    ]
+  },
+  {
+    "id": 3,
+    "photos": [
+      "https://imgholder.ru/600x600/8493a8/adb9ca&text=IMAGE+HOLDER+3&font=kelson"
+    ],
+    "name": "Кира Ё",
+    "age": 3,
+    "religion": "Атеист",
+    "about": "Мой дом находится в северо-восточной части Морио, в районе поместий...",
+    "interests": ["Музыка", "Спорт", "Книги"],
+    "coLife": {
+      "nightOwl": 0,
+      "cleanliness": 1,
+      "noiseLevel": 2,
+      "alcohol": 1,
+      "smoking": 2
+    },
+    "socialLinks": [
+      "https://web.telegram.org/darriyana"
+    ]
+  }
+]

@@ -2,7 +2,7 @@
 
 import React, {useState} from "react";
 import {usePathname, useRouter} from "next/navigation";
-import styles from "@/Styles/Layout.module.scss";
+import styles from "@/Styles/Layout/Layout.module.scss";
 
 const icons = [
   { name: "поиск", icon: "/layout/PassiveIcons/dating.svg", activeIcon: "/layout/ActiveIcons/dating.svg", route: "/dating" },
