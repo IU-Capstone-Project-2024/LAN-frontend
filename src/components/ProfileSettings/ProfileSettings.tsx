@@ -7,10 +7,12 @@ import styles from '../../Styles/ProfileSettings/profileSettings.module.scss';
 import { RootState } from "@/Store/store";
 import UploadPhoto from "@/components/ProfileSettings/UploadPhoto/UploadPhoto";
 import {
+  setAbout,
   setAge,
   setName,
   setReligion,
   setSocialLinks,
+  setInterests,
   updateSocialLink, addSocialLink, removeSocialLink
 } from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/ProfileSettings/ModalPhoto/ModalPhoto";
@@ -55,9 +57,19 @@ const ProfileSettings: React.FC = () => {
         break;
     }
   };
+  const handleTextareaChange = (e: ChangeEvent<HTMLTextAreaElement>) => {
+    const { name, value } = e.target;
+    setProfileState((prevState) => ({
+      ...prevState,
+      [name]: value,
+    }));
+    if (name === 'about') {
+      dispatch(setAbout(value));
+    }
+  };
 
   const handleSave = () => {
-    router.push('/');
+    router.push('/profile');
   };
 
 
