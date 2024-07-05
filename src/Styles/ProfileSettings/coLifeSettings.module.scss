@@ -13,8 +13,8 @@
     margin-top: 20px;
 
     span {
-      color: #4AF11F; /* Изменить цвет на зеленый */
-      white-space: pre-wrap; /* Позволить перенос текста */
+      color: #4AF11F;
+      white-space: pre-wrap;
     }
     .co-life-item {
       display: flex;
@@ -24,7 +24,7 @@
 
       label {
         margin-bottom: 5px;
-        color: #ffffff; // Assuming white color for labels
+        color: #ffffff;
       }
 
       input[type="range"] {
@@ -44,7 +44,7 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #4AF11F; // Green color for thumb
+        background: #4AF11F;
         cursor: pointer;
       }
 
@@ -52,7 +52,7 @@
         width: 20px;
         height: 20px;
         border-radius: 50%;
-        background: #4AF11F; // Green color for thumb
+        background: #4AF11F;
         cursor: pointer;
       }
 
@@ -61,15 +61,15 @@
         justify-content: space-between;
         width: 95%;
         margin-top: 5px;
-        padding: 0 20px; /* Подвинуть слова от краев к середине на 2px */
+        padding: 0 20px;
 
         .leftLabel {
-          color: #8C8D92; // White color for left label
+          color: #8C8D92;
           text-align: left;
         }
 
         .rightLabel {
-          color: #8C8D92; // White color for right label
+          color: #8C8D92;
           text-align: right;
         }
       }

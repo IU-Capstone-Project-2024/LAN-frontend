@@ -90,5 +90,5 @@ legend {
 body{
   background: #2D3037;
   color: #fff;
+  -webkit-tap-highlight-color: transparent;
 }
-
