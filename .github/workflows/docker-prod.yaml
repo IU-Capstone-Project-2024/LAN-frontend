@@ -14,7 +14,7 @@ jobs:
       - name: push-to-ghcr
         uses: macbre/push-to-ghcr@v14
         with:
-          github_token: ${{ secrets.TOKEN }}
+          github_token: ${{ secrets.DOCKER_TOKEN }}
           image_name: frontend
 
   deploy:
@@ -25,9 +25,9 @@ jobs:
       - name: SSH Remote Commands
         uses: appleboy/ssh-action@v1.0.3
         with:
-          host: ${{ secrets.HOST }}
-          username: ${{ secrets.USERNAME }}
-          password: ${{ secrets.PASSWORD }}
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
           # `docker compose restart` wouldn't work since we need to teardown the entire setup
           script: |
             docker compose down
