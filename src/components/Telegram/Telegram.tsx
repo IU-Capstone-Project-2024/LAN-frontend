@@ -10,7 +10,6 @@ const TelegramApp: React.FC = () => {
     if (telegram) {
       setTg(telegram);
       telegram.ready();
-      console.log(tg.initDataUnsafe.toString())
     }
   }, []);
 
