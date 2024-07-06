@@ -1,24 +1,34 @@
-// components/TelegramApp.tsx
 import { useEffect, useState } from 'react';
-import { initializeTelegram } from '@/lib/telegram';
+import {useSendTelegramDataMutation} from "@/Store/api/telegramDataApi";
 
 const TelegramApp: React.FC = () => {
   const [tg, setTg] = useState<any>(null);
+  const [sendTelegramData] = useSendTelegramDataMutation();
 
   useEffect(() => {
-    const telegram = initializeTelegram();
-    if (telegram) {
+    if (typeof window !== 'undefined' && 'Telegram' in window) {
+      const telegram = (window as any).Telegram.WebApp;
       setTg(telegram);
       telegram.ready();
     }
   }, []);
 
-
+  const sendMessage = async () => {
+    if (tg) {
+      const { id, first_name, last_name, username, photo_url, auth_date, hash } = tg.initData.user;
+      await sendTelegramData({ id, first_name, last_name, username, photo_url, auth_date, hash });
+    }
+  };
 
   return (
       <div>
         <h1>Welcome to Telegram Mini App</h1>
-        {tg && <p>User: {tg.initData}</p>}
+        {tg && (
+            <div>
+              <p>User: {tg.initDataUnsafe.user?.first_name}</p>
+              <button onClick={sendMessage}>Send User Data</button>
+            </div>
+        )}
       </div>
   );
 };
