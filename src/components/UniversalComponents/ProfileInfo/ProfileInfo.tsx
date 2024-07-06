@@ -53,7 +53,12 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
   return (
       <div className={styles.details_container}>
         <span className={styles["span"]}></span>
-        <h1>{name}</h1>
+        {about ? (
+            <h1>{name}</h1>
+        ):(
+            <h1>Имя</h1>
+        )}
+
         {renderAgeReligion()}
         {about && (
             <div className={styles["about"]}>
