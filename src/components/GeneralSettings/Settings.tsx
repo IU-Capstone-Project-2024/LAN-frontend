@@ -9,7 +9,7 @@ import Image from "next/image";
 import Link from 'next/link';
 
 const SettingsPage = () => {
-  const profileName = useSelector((state: RootState) => state.profile.name);
+  const profile = useSelector((state: RootState) => state.profile);
 
   return (
     <div className={styles.container}>
@@ -18,8 +18,8 @@ const SettingsPage = () => {
         <h1 className={styles.headerTitle}>Настройка приложения</h1>
       </Link>
       <div className={styles.profile}>
-        <img src="/path_to_profile_image.jpg" alt={profileName} className={styles.profileImage} />
-        <div className={styles.profileName}>{profileName}Anastasia</div>
+        <img src={profile.photos[0]} alt={profile.name} className={styles.profileImage} />
+        <div className={styles.profileName}>{profile.name}</div>
       </div>
       <ul className={styles.menu}>
         <li>
