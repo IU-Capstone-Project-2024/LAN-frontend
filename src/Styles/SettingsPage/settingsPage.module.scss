@@ -1,0 +1,78 @@
+.container {
+    color: #fff; // White text
+    font-family: 'Arial', sans-serif; // Font family for text
+    padding: 20px;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    position: relative; // Required for absolute positioning within
+    gap: 18px;
+  }
+  
+  .profile {
+    display: flex;
+    flex-direction: column; // Changed to column for vertical layout
+    align-items: center; // Center align the items
+    margin-bottom: 20px; // Adjusted margin for better spacing
+  
+    .profileImage {
+      border-radius: 50%;
+      width: 80px; // Increased size for visibility
+      height: 80px;
+      object-fit: cover; // Keeps the aspect ratio of the image
+      margin-bottom: 10px; // Space between image and name
+      border: 3px solid #fff; // Optional: white border around the image
+    }
+  
+    .profileName {
+      font-size: 18px; // Increased font size
+    }
+  }
+  
+  .menu {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    width: 100%; // Ensures the menu takes full container width
+  
+    li {
+      border: 1px solid #8E94A2; // Slightly lighter border for contrast
+      color: #8E94A2;
+      padding: 12px 20px;
+      border-radius: 15px; // Rounded corners for list items
+      margin-bottom: 10px; // Space between items
+      display: flex;
+      justify-content: space-between; // Space between text and icon
+      align-items: center;
+      cursor: pointer;
+      gap: 18px;
+  
+      &:last-child {
+        margin-bottom: 0;
+      }
+  
+      .menuText {
+        flex-grow: 1; // Allows text to take up necessary space
+      }
+  
+      .arrow {
+        width: 12px; // Width of the arrow icon
+        height: 12px; // Height of the arrow icon
+        background-image: url('/arrow_icon.svg'); // Path to the right arrow icon
+        background-size: cover;
+        background-position: center;
+        color: #8E94A2;
+      }
+    }
+
+  }
+  .backButton {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #fff; // Set the text color to white
+    font-size: 24px; // Increase font size
+    padding: 15px; // Add padding for better spacing
+    gap: 10px;
+
+}
