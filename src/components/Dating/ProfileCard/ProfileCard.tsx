@@ -13,7 +13,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
   const [screenWidth] = useState<number>(0);
   const router = useRouter();
   const handleEditProfile = () => {
-    router.push('/profile_settings');
+    router.push('/dating/filter');
   };
 
   const truncateLink = (link: string) => {

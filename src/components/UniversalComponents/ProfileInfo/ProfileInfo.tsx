@@ -53,10 +53,10 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
   return (
       <div className={styles.details_container}>
         <span className={styles["span"]}></span>
-        {about ? (
+        {name ? (
             <h1>{name}</h1>
         ):(
-            <h1>Имя</h1>
+            <h1>Дипрессия</h1>
         )}
 
         {renderAgeReligion()}

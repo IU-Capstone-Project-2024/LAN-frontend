@@ -2,7 +2,10 @@
 const nextConfig = {
     reactStrictMode: true,
     swcMinify: true,
-    webpack: (config) => {
+    webpack: (config, {isServer}) => {
+        if (!isServer) {
+            config.resolve.fallback.fs = false;
+        }
         config.module.rules.push({
             test: /\.svg$/,
             use: ["@svgr/webpack"],
