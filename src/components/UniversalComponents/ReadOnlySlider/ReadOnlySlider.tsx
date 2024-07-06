@@ -1,4 +1,4 @@
-import React from 'react';
+import {FC} from 'react';
 import styles from '@/Styles/Universal/ReadOnlySlider.module.scss';
 
 interface ReadOnlySliderProps {
@@ -8,7 +8,7 @@ interface ReadOnlySliderProps {
   max: number;
 }
 
-const ReadOnlySlider: React.FC<ReadOnlySliderProps> = ({ labelStart, labelEnd, value, max }) => {
+const ReadOnlySlider: FC<ReadOnlySliderProps> = ({ labelStart, labelEnd, value, max }) => {
   const percentage = (value / max) * 100;
 
   return (
