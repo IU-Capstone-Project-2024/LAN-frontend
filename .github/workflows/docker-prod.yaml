@@ -22,19 +22,13 @@ jobs:
     needs: build-and-push
 
     steps:
-      - name: SSH & docker compose
-        uses: matiasnu/github-action-ssh-docker-compose@v2.0.3
+      - name: SSH Remote Commands
+        uses: appleboy/ssh-action@v1.0.3
         with:
-          # Private SSH key used for logging into remote system.
-          ssh_private_key: $ {{ secrets.SERVER_SSH_PRIVATE_KEY }}
-          # Remote host name.
-          ssh_host: ${{ secrets.SERVER_HOST }}
-          # Remote user name.
-          ssh_user: $ {{ secrets.SERVER_USERNAME }}
-          # Docker compose file to use
-          docker_compose_filename: compose.yaml
-          # Use docker stack instead of docker compose ("true" or "false").
-          # use_stack: # optional, default is false
-          # Execute docker compose-down ("true" or "false").
-          docker_compose_down: true
-          
+          host: ${{ secrets.SERVER_HOST }}
+          username: ${{ secrets.SERVER_USERNAME }}
+          password: ${{ secrets.SERVER_PASSWORD }}
+          # `docker compose restart` wouldn't work since we need to teardown the entire setup
+          script: |
+            docker compose down &&
+            docker compose up -d
