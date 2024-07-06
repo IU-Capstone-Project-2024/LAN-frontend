@@ -15,8 +15,8 @@ const TelegramApp: React.FC = () => {
 
   const sendMessage = async () => {
     if (tg) {
-      const { id, first_name, last_name, username, photo_url, auth_date, hash } = tg.initData.user;
-      await sendTelegramData({ id, first_name, last_name, username, photo_url, auth_date, hash });
+      const { id, first_name, last_name, username, photo_url} = tg.initDataUnsafe.user;
+      await sendTelegramData({ id, first_name, last_name, username, photo_url});
     }
   };
 
