@@ -10,7 +10,7 @@ const TelegramApp: React.FC = () => {
     if (telegram) {
       setTg(telegram);
       telegram.ready();
-      console.log(tg.initData.toString())
+      console.log(tg.initDataUnsafe.toString())
     }
   }, []);
 
@@ -19,7 +19,7 @@ const TelegramApp: React.FC = () => {
   return (
       <div>
         <h1>Welcome to Telegram Mini App</h1>
-        {tg && <p>User: {tg.initDataUnsafe?.user?.first_name}</p>}
+        {tg && <p>User: {tg.initData}</p>}
       </div>
   );
 };
