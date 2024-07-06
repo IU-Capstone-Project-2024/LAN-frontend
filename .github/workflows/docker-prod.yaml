@@ -15,7 +15,7 @@ jobs:
         uses: macbre/push-to-ghcr@v14
         with:
           github_token: ${{ secrets.DOCKER_TOKEN }}
-          image_name: frontend
+          image_name: ghcr.io/innolan/frontend
 
   deploy:
     runs-on: ubuntu-latest
