@@ -32,7 +32,7 @@
 
   input,
   textarea {
-    width: calc(100% - 40px); /* Adjust this value as needed */
+    width: calc(100% - 40px);
     margin: 10px 20px;
   }
 }
@@ -151,46 +151,46 @@
   .social-link {
     display: flex;
     align-items: center;
-    width: 100%; /* Ширина контейнера */
-    margin-bottom: 10px; /* Промежуток между элементами */
+    width: 100%;
+    margin-bottom: 10px;
   }
 
   .social-link input {
-    padding: 8px; /* Отступы внутри поля ввода */
-    font-size: 16px; /* Размер шрифта */
-    border: 2px solid #D5DBE9; /* Рамка */
-    border-radius: 25px; /* Закругленные углы */
-    outline: none; /* Убираем контур фокуса */
-    width: 90%; /* Ширина поля ввода */
-    box-sizing: border-box; /* Учитываем рамку и внутренние отступы */
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    width: 90%;
+    box-sizing: border-box;
   }
 
   .delete_button {
     background: no-repeat center center;
     background-size: contain;
-    width: 36px; /* Ширина кнопки */
-    height: 36px; /* Высота кнопки */
-    border: none; /* Убираем рамку */
-    cursor: pointer; /* Курсор при наведении */
-    margin-left: 10px; /* Отступ слева */
+    width: 36px;
+    height: 36px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
   }
 
   .delete_button:hover {
-    opacity: 0.8; /* Прозрачность при наведении */
+    opacity: 0.8;
   }
 
   .addButton {
     background: no-repeat center center;
     background-size: contain;
     border: none;
-    width: 32px; /* Ширина кнопки */
-    height: 32px; /* Высота кнопки */
+    width: 32px;
+    height: 32px;
     cursor: pointer;
-    margin-top: 10px; /* Отступ сверху */
-    align-self: center; /* Выравнивание по центру относительно контейнера */
+    margin-top: 10px;
+    align-self: center;
 
     &:hover {
-      opacity: 0.8; /* Прозрачность при наведении */
+      opacity: 0.8;
     }
   }
 }

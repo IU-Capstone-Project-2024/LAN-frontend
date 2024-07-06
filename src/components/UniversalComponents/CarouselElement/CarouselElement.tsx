@@ -1,20 +1,21 @@
 import React, {FC} from 'react';
 import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
-import styles from "@/Styles/Profile/Carousel.module.scss";
-import {useSelector} from "react-redux";
-import {RootState} from "@/Store/store";
+import styles from "@/Styles/Universal/Carousel.module.scss";
 import Image from "next/image";
-import '@/Styles/Profile/castomCarousel/castomCarousel.css'
+import '@/Styles/Universal/castomCarousel/castomCarousel.css'
 
-const CarouselElement: FC = () => {
-  const profile = useSelector((state: RootState) => state.profile);
 
+interface CarouselElementProps {
+  photos: string[];
+}
+
+const CarouselElement: FC<CarouselElementProps> = ({ photos }) => {
   return (
       <>
-        {profile.photos.length > 0 ? (
+        {photos.length > 0 ? (
             <Carousel showThumbs={false} showArrows={false} showStatus={false}>
-              {profile.photos.map((photo, index) => (
+              {photos.map((photo, index) => (
                   <div key={index} className={styles['carousel-slide']}>
                     <img src={photo} alt={`Photo ${index + 1}`} />
                     <div className={styles['image-gradient']} />
@@ -22,12 +23,10 @@ const CarouselElement: FC = () => {
               ))}
             </Carousel>
         ) : (
-            <Image src='/default_avatar.png' alt="Placeholder" width={600} height={600}/>
-
+            <Image src='/default_avatar.png' alt="Placeholder" width={600} height={600} />
         )}
       </>
   );
 };
-
 
 export default CarouselElement;

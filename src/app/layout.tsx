@@ -13,9 +13,9 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-      <html lang="en">
       <Provider store={store}>
         <body className={montserrat.className}>
+        <Telegram/>
         <div>
           {children}
         </div>
