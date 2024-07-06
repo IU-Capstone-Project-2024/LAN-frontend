@@ -13,6 +13,8 @@ const TelegramApp: React.FC = () => {
     }
   }, []);
 
+  console.log(tg.initData.toString())
+
   return (
       <div>
         <h1>Welcome to Telegram Mini App</h1>
