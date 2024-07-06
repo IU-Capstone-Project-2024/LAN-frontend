@@ -10,10 +10,11 @@ const TelegramApp: React.FC = () => {
     if (telegram) {
       setTg(telegram);
       telegram.ready();
+      console.log(tg.initData.toString())
     }
   }, []);
 
-  console.log(tg.initData.toString())
+
 
   return (
       <div>
