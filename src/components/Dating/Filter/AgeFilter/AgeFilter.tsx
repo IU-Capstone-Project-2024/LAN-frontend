@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { setAgeRange } from '@/Store/slices/filterSlice';
 import ReactSlider from 'react-slider';
-import '@/styles/Filter/castomSlider/castomSlider.css';
-import styles from '@/styles/Filter/AgeFilter.module.scss';
+import '@/Styles/Filter/castomSlider/castomSlider.css';
+import styles from '@/Styles/Filter/AgeFilter.module.scss';
 
 const AgeFilter: FC = () => {
   const dispatch = useDispatch();

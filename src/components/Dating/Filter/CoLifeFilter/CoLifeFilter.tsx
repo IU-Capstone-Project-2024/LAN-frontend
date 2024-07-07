@@ -8,7 +8,7 @@ import {
   setAlcohol,
   setSmoking
 } from '@/Store/slices/filterSlice';
-import styles from '@/styles/Filter/CoLifeFilter.module.scss';
+import styles from '@/Styles/Filter/CoLifeFilter.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
 
 const CoLifeFilter: FC = () => {

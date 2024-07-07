@@ -3,7 +3,7 @@
 import React, { FC } from 'react';
 import { useDispatch } from 'react-redux';
 import { resetFilters } from '@/Store/slices/filterSlice';
-import styles from '@/styles/Filter/Filter.module.scss';
+import styles from '@/Styles/Filter/Filter.module.scss';
 import CategoryFilter from './CategoryFilter/CategoryFilter';
 import AgeFilter from './AgeFilter/AgeFilter';
 import GenderFilter from './GenderFilter/GenderFilter';
