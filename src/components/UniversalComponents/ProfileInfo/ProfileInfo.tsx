@@ -56,7 +56,7 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
         {name ? (
             <h1>{name}</h1>
         ):(
-            <h1>Дипрессия</h1>
+            <h1>Депрессия</h1>
         )}
 
         {renderAgeReligion()}
@@ -78,11 +78,11 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
         )}
         <div className={styles["co-life"]}>
           <h2>Co-Life</h2>
-          <ReadOnlySlider labelStart="Сова" labelEnd="Жаворонок" value={coLife.nightOwl} max={2} />
-          <ReadOnlySlider labelStart="Чистота важна" labelEnd="Чистота не так важна" value={coLife.cleanliness} max={2} />
-          <ReadOnlySlider labelStart="Люблю тишину и покой" labelEnd="Люблю шум и компанию" value={coLife.noiseLevel} max={2} />
-          <ReadOnlySlider labelStart="Пью алкоголь" labelEnd="Не пью" value={coLife.alcohol} max={2} />
-          <ReadOnlySlider labelStart="Курю" labelEnd="Не курю" value={coLife.smoking} max={2} />
+          <ReadOnlySlider labelStart="Сова" labelEnd="Жаворонок" value={coLife.nightOwl} min={-1} max={1} />
+          <ReadOnlySlider labelStart="Чистота важна" labelEnd="Чистота не так важна" value={coLife.cleanliness} min={-1} max={1} />
+          <ReadOnlySlider labelStart="Люблю тишину и покой" labelEnd="Люблю шум и компанию" value={coLife.noiseLevel} min={-1} max={1} />
+          <ReadOnlySlider labelStart="Пью алкоголь" labelEnd="Не пью" value={coLife.alcohol} min={-1} max={1} />
+          <ReadOnlySlider labelStart="Курю" labelEnd="Не курю" value={coLife.smoking} min={-1} max={1} />
         </div>
         {socialLinks.length > 0 && (
             <div className={styles["social-links"]}>

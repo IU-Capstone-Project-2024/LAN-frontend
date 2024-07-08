@@ -5,7 +5,11 @@ import { RootState } from '@/Store/store';
 import styles from '@/Styles/ProfileSettings/coLifeSettings.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
 
-const CoLifeSettings: FC = () => {
+interface CoLifeProps {
+  title?: string;
+}
+
+const CoLifeSettings: FC<CoLifeProps> = ({title}) => {
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
 
@@ -16,7 +20,7 @@ const CoLifeSettings: FC = () => {
 
   return (
     <div className={styles['co-life']}>
-      <label className={styles.title}>Co-Life</label>
+      <label className={styles.title}>{title}</label>
       <RangeSlider
         value={profile.coLife.nightOwl}
         leftLabel={'Сова'}
@@ -29,7 +33,7 @@ const CoLifeSettings: FC = () => {
           onChange={(e) => handleCoLifeChange(e, 'cleanliness')}/>
       <RangeSlider
           value={profile.coLife.noiseLevel}
-          leftLabel={'Люболю тинину и покой'}
+          leftLabel={'Люболю тишину и покой'}
           rightLabel={'Люблю шум и компанию'}
           onChange={(e) => handleCoLifeChange(e, 'noiseLevel')}/>
       <RangeSlider

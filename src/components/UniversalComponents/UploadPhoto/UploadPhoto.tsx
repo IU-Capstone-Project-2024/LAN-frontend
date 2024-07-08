@@ -1,28 +1,29 @@
-import React, { ChangeEvent, FC, useEffect, useRef, useState } from 'react';
-import styles from "@/Styles/ProfileSettings/uploadPhoto.module.scss";
+import React, { ChangeEvent, FC, useRef, useState } from 'react';
+import styles from "@/Styles/Universal/uploadPhoto.module.scss";
 import Cropper from "react-cropper";
-import { useDispatch, useSelector } from "react-redux";
-import { RootState } from "@/Store/store";
-import { setPhotos, setModalPhoto, setShowModal } from "@/Store/slices/profileSlice";
 import 'cropperjs/dist/cropper.css';
 import Modal from 'react-modal';
 
-const UploadPhoto: FC = () => {
-  const profile = useSelector((state: RootState) => state.profile);
-  const cropperRef = useRef<HTMLImageElement & { cropper: Cropper }>(null);
-  const dispatch = useDispatch();
+interface UploadPhotoProps {
+  photos: string[];
+  onPhotoAdd: (photo: string) => void;
+  onPhotoClick: (photo: string) => void;
+  isModalOpen: boolean;
+  onModalOpen: () => void;
+  onModalClose: () => void;
+}
 
+const UploadPhoto: FC<UploadPhotoProps> = ({
+                                             photos,
+                                             onPhotoAdd,
+                                             onPhotoClick,
+                                             isModalOpen,
+                                             onModalOpen,
+                                             onModalClose
+                                           }) => {
+  const cropperRef = useRef<HTMLImageElement & { cropper: Cropper }>(null);
   const [cropData, setCropData] = useState<string>('');
   const [image, setImage] = useState<string>('');
-  const [profileState, setProfileState] = useState({
-    photos: profile.photos,
-  });
-
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
-
-  useEffect(() => {
-    setProfileState(profile);
-  }, [profile]);
 
   const handlePhotoChange = (e: ChangeEvent<HTMLInputElement>) => {
     if (e.target.files && e.target.files[0]) {
@@ -31,7 +32,7 @@ const UploadPhoto: FC = () => {
       reader.onloadend = () => {
         if (typeof reader.result === 'string') {
           setImage(reader.result);
-          setIsModalOpen(true);
+          onModalOpen();
         }
       };
       reader.readAsDataURL(file);
@@ -43,42 +44,37 @@ const UploadPhoto: FC = () => {
     setCropData(cropper?.getCroppedCanvas().toDataURL() || '');
   };
 
-  const handlePhotoClick = (photo: string) => {
-    dispatch(setModalPhoto(photo));
-    dispatch(setShowModal(true));
-  };
-
   const handleSavePhoto = () => {
     if (cropData) {
-      dispatch(setPhotos([...profileState.photos, cropData]));
+      onPhotoAdd(cropData);
       setImage('');
       setCropData('');
-      setIsModalOpen(false);
+      onModalClose();
     }
   };
 
   const handleCancel = () => {
     setImage('');
     setCropData('');
-    setIsModalOpen(false);
+    onModalClose();
   };
 
   return (
       <>
         <div className={styles.photo_upload}>
-          {profileState.photos.map((photo, index) => (
-              <div key={index} className={styles['photo-slot']} onClick={() => handlePhotoClick(photo)}>
+          {photos.map((photo, index) => (
+              <div key={index} className={styles['photo-slot']} onClick={() => onPhotoClick(photo)}>
                 <img src={photo} alt={`Фото ${index + 1}`} />
               </div>
           ))}
-          {profileState.photos.length < 3 && (
-              new Array(3 - profile.photos.length).fill(null).map((_, index) => (
-                  <div key={index + profile.photos.length} className={styles['photo-slot']}>
-                    <label htmlFor={`photo-upload-input-${index + profile.photos.length}`} className={styles['photo-upload-label']}>
+          {photos.length < 3 && (
+              new Array(3 - photos.length).fill(null).map((_, index) => (
+                  <div key={index + photos.length} className={styles['photo-slot']}>
+                    <label htmlFor={`photo-upload-input-${index + photos.length}`} className={styles['photo-upload-label']}>
                       <span>+</span>
                     </label>
                     <input
-                        id={`photo-upload-input-${index + profile.photos.length}`}
+                        id={`photo-upload-input-${index + photos.length}`}
                         type="file"
                         accept="image/*"
                         onChange={handlePhotoChange}
@@ -90,7 +86,7 @@ const UploadPhoto: FC = () => {
         </div>
         <Modal
             isOpen={isModalOpen}
-            onRequestClose={() => setIsModalOpen(false)}
+            onRequestClose={onModalClose}
             className={styles.modal}
             overlayClassName={styles.overlay}
         >

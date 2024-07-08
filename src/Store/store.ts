@@ -5,6 +5,7 @@ import favoritesReducer from './slices/favoritesSlice';
 import {setupListeners} from "@reduxjs/toolkit/query";
 import {telegramApi} from "@/Store/api/telegramDataApi";
 import filterReducer from './slices/filterSlice';
+import birthdayReducer from './slices/birthdaySlice';
 
 export const store = configureStore({
   reducer: {
@@ -12,6 +13,7 @@ export const store = configureStore({
     dating: datingReducer,
     favorites: favoritesReducer,
     filters: filterReducer,
+    birthday: birthdayReducer,
     [telegramApi.reducerPath]: telegramApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

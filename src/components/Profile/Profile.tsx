@@ -13,6 +13,7 @@ const Profile: FC = () => {
   const router = useRouter();
   const [screenWidth] = useState<number>(0);
   const profile = useSelector((state: RootState) => state.profile);
+  const birthday = useSelector((state: RootState) => state.birthday);
   const handleEditProfile = () => {
     router.push('/profile_settings');
   };
@@ -41,7 +42,7 @@ const Profile: FC = () => {
                      about={profile.about}
                      interests={profile.interests}
                      name={profile.name}
-                     age={profile.age}
+                     age={birthday.age}
                      religion={profile.religion}
                      socialLinks={profile.socialLinks}
         />

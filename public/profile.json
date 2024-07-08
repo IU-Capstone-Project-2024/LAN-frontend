@@ -10,10 +10,10 @@
     "interests": ["Музыка", "Спорт", "Книги"],
     "coLife": {
       "nightOwl": 1,
-      "cleanliness": 2,
+      "cleanliness": -1,
       "noiseLevel": 0,
-      "alcohol": 1,
-      "smoking": 2
+      "alcohol": -1,
+      "smoking": 0
     },
     "socialLinks": [
       "https://web.telegram.org/darriyana"
@@ -30,11 +30,11 @@
     "about": "Мой дом находится в северо-восточной части Морио, в районе поместий...",
     "interests": ["Музыка", "Спорт", "Книги"],
     "coLife": {
-      "nightOwl": 2,
+      "nightOwl": 1,
       "cleanliness": 0,
       "noiseLevel": 1,
-      "alcohol": 1,
-      "smoking": 2
+      "alcohol": -1,
+      "smoking": 0
     },
     "socialLinks": [
       "https://web.telegram.org/darriyana"
@@ -52,10 +52,10 @@
     "interests": ["Музыка", "Спорт", "Книги"],
     "coLife": {
       "nightOwl": 0,
-      "cleanliness": 1,
-      "noiseLevel": 2,
-      "alcohol": 1,
-      "smoking": 2
+      "cleanliness": -1,
+      "noiseLevel": 1,
+      "alcohol": -1,
+      "smoking": 0
     },
     "socialLinks": [
       "https://web.telegram.org/darriyana"
