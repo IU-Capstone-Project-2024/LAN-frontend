@@ -1,0 +1,40 @@
+"use client"
+
+import React, {FC} from 'react';
+import {useRouter} from "next/navigation";
+import styles from "@/Styles/Auth/Step3.module.scss";
+import Interests from "@/components/ProfileSettings/Interests/Interests";
+import CoLifeSettings from "@/components/ProfileSettings/CoLife/CoLife";
+
+const Step3: FC = () => {
+  const router = useRouter();
+
+  const nextStep = () => {
+    router.push('/profile');
+  };
+
+  const prevStep = () => {
+    router.push('/auth/step_2');
+  }
+
+
+  return (
+      <div className={styles.container}>
+        <h1>Создание профиля (3/3)</h1>
+        <Interests/>
+        <div>
+          <h2>Заполните опрос на сожительство</h2>
+          <CoLifeSettings/>
+        </div>
+
+
+
+        <div>
+          <button className={styles["button"]} onClick={prevStep}>Назад</button>
+          <button className={styles["button"]} onClick={nextStep}>Завершить</button>
+        </div>
+      </div>
+  );
+};
+
+export default Step3;
