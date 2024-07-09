@@ -2,7 +2,7 @@ import React, { FC, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { setInterests } from '@/Store/slices/filterSlice';
-import styles from '@/Styles/Filter/Filter.module.scss';
+import styles from '@/Styles/Dating/Filter/Filter.module.scss';
 
 const InterestsFilter: FC = () => {
   const dispatch = useDispatch();

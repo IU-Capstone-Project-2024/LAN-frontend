@@ -3,7 +3,7 @@
 import React, { useState, ChangeEvent } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
-import styles from '../../Styles/ProfileSettings/profileSettings.module.scss';
+import styles from '@/Styles/Profile/ProfileSettings/profileSettings.module.scss';
 import { RootState } from "@/Store/store";
 import UploadPhoto from "@/components/UniversalComponents/UploadPhoto/UploadPhoto";
 import {
@@ -15,12 +15,12 @@ import {
   setModalPhoto,
   setShowModal,
 } from "@/Store/slices/profileSlice";
-import ModalPhoto from "@/components/ProfileSettings/ModalPhoto/ModalPhoto";
-import CoLifeSettings from "@/components/ProfileSettings/CoLife/CoLife";
-import Interests from "@/components/ProfileSettings/Interests/Interests";
-import About from "@/components/ProfileSettings/About/About";
+import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPhoto";
+import CoLifeSettings from "@/components/Profile/ProfileSettings/CoLife/CoLife";
+import Interests from "@/components/Profile/ProfileSettings/Interests/Interests";
+import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
-import SocialLinks from "@/components/ProfileSettings/SocialLinks/SocialLinks";
+import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();

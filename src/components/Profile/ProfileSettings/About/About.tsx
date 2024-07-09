@@ -1,8 +1,7 @@
-import React, { ChangeEvent, FC, useState, useEffect, useRef } from 'react';
-import styles from '@/Styles/ProfileSettings/about.module.scss';
+import React, { ChangeEvent, FC, useState, useEffect } from 'react';
+import styles from '@/Styles/Profile/ProfileSettings/about.module.scss';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
-import { Scrollbars } from 'react-custom-scrollbars-2';
 import { setAbout } from '@/Store/slices/profileSlice';
 
 const About: FC = () => {

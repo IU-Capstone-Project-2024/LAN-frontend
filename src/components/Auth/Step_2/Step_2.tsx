@@ -3,8 +3,8 @@
 import React, {FC} from 'react';
 import {useRouter} from "next/navigation";
 import styles from "@/Styles/Auth/Step2.module.scss";
-import About from "@/components/ProfileSettings/About/About";
-import SocialLinks from "@/components/ProfileSettings/SocialLinks/SocialLinks";
+import About from "@/components/Profile/ProfileSettings/About/About";
+import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
 
 const Step2: FC = () => {
   const router = useRouter();

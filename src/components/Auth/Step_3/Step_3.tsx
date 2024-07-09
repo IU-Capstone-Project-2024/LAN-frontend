@@ -3,8 +3,8 @@
 import React, {FC} from 'react';
 import {useRouter} from "next/navigation";
 import styles from "@/Styles/Auth/Step3.module.scss";
-import Interests from "@/components/ProfileSettings/Interests/Interests";
-import CoLifeSettings from "@/components/ProfileSettings/CoLife/CoLife";
+import Interests from "@/components/Profile/ProfileSettings/Interests/Interests";
+import CoLifeSettings from "@/components/Profile/ProfileSettings/CoLife/CoLife";
 
 const Step3: FC = () => {
   const router = useRouter();

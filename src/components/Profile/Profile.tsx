@@ -15,7 +15,7 @@ const Profile: FC = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const birthday = useSelector((state: RootState) => state.birthday);
   const handleEditProfile = () => {
-    router.push('/profile_settings');
+    router.push('/profile/settings');
   };
 
   const truncateLink = (link: string) => {

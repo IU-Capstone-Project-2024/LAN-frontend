@@ -1,6 +1,6 @@
 import {FC} from 'react';
 import {useDispatch, useSelector} from "react-redux";
-import styles from '@/Styles/ProfileSettings/modal.module.scss';
+import styles from '@/Styles/Profile/ProfileSettings/modal.module.scss';
 import Modal from 'react-modal';
 import {
   removePhoto,

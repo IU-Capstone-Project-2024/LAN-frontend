@@ -4,7 +4,7 @@ import {RootState} from "@/Store/store";
 import {
   setInterests,
 } from "@/Store/slices/profileSlice";
-import styles from "@/Styles/ProfileSettings/interests.module.scss"
+import styles from "@/Styles/Profile/ProfileSettings/interests.module.scss"
 
 
 const Interests: FC = () => {

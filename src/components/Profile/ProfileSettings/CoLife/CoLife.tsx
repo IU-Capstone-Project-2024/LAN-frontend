@@ -2,7 +2,7 @@ import { ChangeEvent, FC } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { setCoLife } from '@/Store/slices/profileSlice';
 import { RootState } from '@/Store/store';
-import styles from '@/Styles/ProfileSettings/coLifeSettings.module.scss';
+import styles from '@/Styles/Profile/ProfileSettings/coLifeSettings.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
 
 interface CoLifeProps {

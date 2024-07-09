@@ -2,7 +2,7 @@ import {FC, useState, useRef, useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { setCategory } from '@/Store/slices/filterSlice';
-import styles from '@/Styles/Filter/CategoryFilter.module.scss';
+import styles from '@/Styles/Dating/Filter/CategoryFilter.module.scss';
 
 const CategoryFilter: FC = () => {
   const dispatch = useDispatch();

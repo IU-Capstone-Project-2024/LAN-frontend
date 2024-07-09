@@ -1,5 +1,5 @@
 import React, {ChangeEvent, FC} from 'react';
-import styles from "@/Styles/ProfileSettings/profileSettings.module.scss";
+import styles from "@/Styles/Profile/ProfileSettings/profileSettings.module.scss";
 import Image from "next/image";
 import {addSocialLink, removeSocialLink, updateSocialLink} from "@/Store/slices/profileSlice";
 import {useDispatch, useSelector} from "react-redux";

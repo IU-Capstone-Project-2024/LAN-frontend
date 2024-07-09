@@ -3,6 +3,7 @@
 import React, {useState} from "react";
 import {usePathname, useRouter} from "next/navigation";
 import styles from "@/Styles/Layout/Layout.module.scss";
+import ActionButtons from "@/components/Dating/ActionButtons/ActionButtons";
 
 const icons = [
   { name: "поиск", icon: "/layout/PassiveIcons/dating.svg", activeIcon: "/layout/ActiveIcons/dating.svg", route: "/dating" },
@@ -26,9 +27,14 @@ const Layout = () => {
     }
   };
 
+  const authRoutes = ["/auth/step_1", "/auth/step_2", "/auth/step_3", "/"];
+
+  if (authRoutes.includes(pathname)) {
+    return null;
+  }
+
   return (
-      <div className={styles.container}>
-        <main className={styles.content}></main>
+      <div className={pathname === "/dating" ? styles.contentDating : styles.container}>
         <footer className={styles.footer}>
           <ul className={styles.footerIconList}>
             {icons.map((item, index) => (
@@ -38,7 +44,9 @@ const Layout = () => {
                     onClick={() => handleNavigation(item.route)}
                 >
                   <img
-                      src={pathname === item.route ? item.activeIcon : item.icon}
+                      src={(pathname === item.route ||
+                          (item.route === "/dating" && pathname === "/dating/filter") ||
+                          (item.route === "/profile" && pathname === "/profile/settings")) ? item.activeIcon : item.icon}
                       alt={item.name}
                   />
                 </li>
@@ -49,6 +57,12 @@ const Layout = () => {
             <div className={styles.notification}>
               <p>Скоро</p>
             </div>
+        )}
+        {pathname === "/dating" && (
+            <>
+              <ActionButtons/>
+              <div className={styles.gradient}></div>
+            </>
         )}
       </div>
   );

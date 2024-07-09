@@ -7,7 +7,7 @@ import UploadPhoto from "@/components/UniversalComponents/UploadPhoto/UploadPhot
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/Store/store";
 import {setModalPhoto, setName, setPhotos, setReligion, setShowModal} from "@/Store/slices/profileSlice";
-import ModalPhoto from "@/components/ProfileSettings/ModalPhoto/ModalPhoto";
+import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPhoto";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 
 const Step1: React.FC = () => {

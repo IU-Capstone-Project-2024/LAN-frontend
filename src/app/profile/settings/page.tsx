@@ -1,5 +1,5 @@
 import React from 'react';
-import ProfileSettings from '../../components/ProfileSettings/ProfileSettings';
+import ProfileSettings from '@/components/Profile/ProfileSettings/ProfileSettings';
 
 const Settings: React.FC = () => {
   return (

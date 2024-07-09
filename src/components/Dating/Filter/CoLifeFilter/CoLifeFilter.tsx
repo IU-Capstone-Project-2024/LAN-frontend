@@ -8,7 +8,7 @@ import {
   setAlcohol,
   setSmoking
 } from '@/Store/slices/filterSlice';
-import styles from '@/Styles/Filter/CoLifeFilter.module.scss';
+import styles from '@/Styles/Dating/Filter/CoLifeFilter.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
 
 const CoLifeFilter: FC = () => {
@@ -37,7 +37,7 @@ const CoLifeFilter: FC = () => {
 
   return (
       <div className={styles['quality-group']}>
-
+        <label className={styles.title}>Качества в соседе</label>
         <RangeSlider
             value={filters.nightOwl}
             leftLabel={'Сова'}
