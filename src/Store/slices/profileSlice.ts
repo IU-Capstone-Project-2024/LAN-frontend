@@ -12,6 +12,7 @@ interface ProfileState {
   photos: string[];
   name: string;
   age: number;
+  gender: string;
   religion: string;
   about: string;
   interests: string[];
@@ -25,6 +26,7 @@ const initialState: ProfileState = {
   photos: [],
   name: '',
   age: 0,
+  gender: '',
   religion: '',
   about: '',
   interests: [],
@@ -55,6 +57,9 @@ const profileSlice = createSlice({
     },
     setReligion(state, action: PayloadAction<string>) {
       state.religion = action.payload;
+    },
+    setGender(state, action: PayloadAction<string>) {
+      state.gender = action.payload;
     },
     setAbout(state, action: PayloadAction<string>) {
       state.about = action.payload;
@@ -106,6 +111,7 @@ export const {
   setName,
   setAge,
   setReligion,
+  setGender,
   setAbout,
   setInterests,
   setCoLife,

@@ -1,0 +1,47 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  color: #ffffff;
+  width: 100%;
+
+  .title{
+    margin-bottom: 10px;
+    margin-left: 29px;
+    font-size: 20px;
+  }
+
+  .contentProfileSettings{
+    margin-bottom: 10px;
+    margin-left: 25px;
+    font-size: 20px;
+  }
+}
+
+
+
+.buttonContainer{
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin-bottom: 30px;
+
+  span {
+    flex: 0 0 auto;
+    margin: 7.5px 0;
+    color: #8C8D92;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    cursor: pointer;
+    padding: 10px 30px;
+    background: none;
+
+    &.selected {
+      border: 2px solid transparent;
+      background: linear-gradient(#2D3037, #2D3037) padding-box,
+      linear-gradient(#4AF11F, #7640EE) border-box;
+      color: #fff;
+    }
+  }
+}
+
+

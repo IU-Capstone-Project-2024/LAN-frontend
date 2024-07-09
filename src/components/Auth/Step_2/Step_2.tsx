@@ -21,14 +21,13 @@ const Step2: FC = () => {
   return (
       <div className={styles.container}>
         <h1>Создание профиля (2/3)</h1>
-        <div>
-          <h2>Расскажите о себе</h2>
-          <About/>
+        <div className={styles["about"]}>
+          <About title='Расскажите о себе'/>
         </div>
-
-        <SocialLinks/>
-
-        <div>
+        <div className={styles["links"]}>
+          <SocialLinks/>
+        </div>
+        <div className={styles.buttons}>
           <button className={styles["button"]} onClick={prevStep}>Назад</button>
           <button className={styles["button"]} onClick={nextStep}>Далее</button>
         </div>

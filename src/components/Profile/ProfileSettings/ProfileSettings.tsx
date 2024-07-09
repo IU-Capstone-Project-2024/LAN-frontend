@@ -13,7 +13,7 @@ import {
   setSocialLinks,
   setPhotos,
   setModalPhoto,
-  setShowModal,
+  setShowModal, setGender,
 } from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPhoto";
 import CoLifeSettings from "@/components/Profile/ProfileSettings/CoLife/CoLife";
@@ -21,12 +21,14 @@ import Interests from "@/components/Profile/ProfileSettings/Interests/Interests"
 import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
+import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const selectedGender = useSelector((state: RootState) => state.profile.gender);
 
 
   const [profileState, setProfileState] = useState({
@@ -74,6 +76,10 @@ const ProfileSettings: React.FC = () => {
     dispatch(setShowModal(true));
   };
 
+  const handleSelectGender = (option: string) => {
+    dispatch(setGender(option));
+  };
+
 
   return (
     <div className={styles['profile-settings']}>
@@ -99,7 +105,8 @@ const ProfileSettings: React.FC = () => {
           <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange} placeholder='Атеист' />
         </div>
       </div>
-      <About></About>
+      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
+      <About title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>
       <SocialLinks/>

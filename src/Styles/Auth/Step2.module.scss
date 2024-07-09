@@ -1,13 +1,29 @@
 .container{
   display: flex;
   flex-direction: column;
+  align-items: center;
   margin-bottom: 30px;
-  width: 100%;
+  margin-top: 30px;
 
   h1{
+    display: flex;
+    justify-content: center;
     font-size: 1.5rem;
-    font-weight: 600;
+    font-weight: 400;
     margin-bottom: 1rem;
+  }
+
+  input,
+  textarea {
+    width: calc(100% - 40px);
+    margin: 10px 20px;
+  }
+
+  .about{
+    width: 100%;
+    label{
+      margin-bottom: 20px;
+    }
   }
 
 }

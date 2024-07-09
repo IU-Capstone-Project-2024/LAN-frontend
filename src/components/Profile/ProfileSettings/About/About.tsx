@@ -4,7 +4,11 @@ import { useDispatch, useSelector } from 'react-redux';
 import { RootState } from '@/Store/store';
 import { setAbout } from '@/Store/slices/profileSlice';
 
-const About: FC = () => {
+interface AboutProps{
+  title:string
+}
+
+const About: FC<AboutProps> = ({title}) => {
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
   const [profileState, setProfileState] = useState({
@@ -26,7 +30,7 @@ const About: FC = () => {
 
   return (
       <div className={styles.aboutContainer}>
-        <label>О себе</label>
+        <label>{title}</label>
         <textarea
             name="about"
             value={profileState.about}

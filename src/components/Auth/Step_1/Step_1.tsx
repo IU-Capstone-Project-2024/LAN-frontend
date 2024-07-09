@@ -6,15 +6,25 @@ import styles from '@/Styles/Auth/Step1.module.scss';
 import UploadPhoto from "@/components/UniversalComponents/UploadPhoto/UploadPhoto";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/Store/store";
-import {setModalPhoto, setName, setPhotos, setReligion, setShowModal} from "@/Store/slices/profileSlice";
+import {
+  setGender,
+  setModalPhoto,
+  setName,
+  setPhotos,
+  setReligion,
+  setShowModal
+} from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPhoto";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
+import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 
 const Step1: React.FC = () => {
   const router = useRouter();
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const selectedGender = useSelector((state: RootState) => state.profile.gender);
+
 
   const handlePhotoAdd = (photo: string) => {
     dispatch(setPhotos([...profile.photos, photo]));
@@ -44,6 +54,10 @@ const Step1: React.FC = () => {
     dispatch(setReligion(e.target.value));
   }
 
+  const handleSelectGender = (option: string) => {
+    dispatch(setGender(option));
+  };
+
 
   return (
       <div className={styles.container}>
@@ -64,6 +78,7 @@ const Step1: React.FC = () => {
           <span className={styles["span"]}>Как вас зовут?</span>
           <input type="text" placeholder="Ваше имя" name="name" value={profile.name} onChange={handleNameChange}/>
         </div>
+        <SelectSex selectedGender={selectedGender} safeGender={handleSelectGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
         <div className={styles.Birthday}>
           <BirthdayInput title='Дата рождения:'/>
         </div>

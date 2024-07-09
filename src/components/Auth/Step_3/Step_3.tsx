@@ -22,14 +22,10 @@ const Step3: FC = () => {
       <div className={styles.container}>
         <h1>Создание профиля (3/3)</h1>
         <Interests/>
-        <div>
-          <h2>Заполните опрос на сожительство</h2>
-          <CoLifeSettings/>
+        <div className={styles["co-life"]}>
+          <CoLifeSettings title="Заполните опрос:"/>
         </div>
-
-
-
-        <div>
+        <div className={styles.buttons}>
           <button className={styles["button"]} onClick={prevStep}>Назад</button>
           <button className={styles["button"]} onClick={nextStep}>Завершить</button>
         </div>
