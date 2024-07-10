@@ -1,8 +1,9 @@
 import {FC, useEffect} from 'react';
-import {useRegisterUserMutation} from "@/Store/api/telegramDataApi";
+import {useGetTokenMutation, useRegisterUserMutation} from "@/Store/api/telegramDataApi";
 
 const TelegramApp: FC = () => {
   const [registerUser] = useRegisterUserMutation();
+  const [getToken] = useGetTokenMutation();
 
   useEffect(() => {
     const handleTelegramAuth = async () => {
@@ -25,17 +26,26 @@ const TelegramApp: FC = () => {
         };
 
         try {
-          const response = await registerUser(authData).unwrap();
-          console.log('User registered successfully:', response);
+          await registerUser(authData).unwrap();
+
+          const tokenData = {
+            grant_type: 'password',
+            username: user.username,
+            password: 'user_password',
+          };
+
+          const response = await getToken(tokenData).unwrap();
+          localStorage.setItem('token', response.access_token);
+
+          console.log('User registered and authenticated successfully');
         } catch (error) {
-          console.error('Registration failed:', error);
+          console.error('Registration or authentication failed:', error);
         }
       }
     };
 
     handleTelegramAuth();
-
-  }, [registerUser]);
+  }, [registerUser, getToken]);
 
   return(
     <>

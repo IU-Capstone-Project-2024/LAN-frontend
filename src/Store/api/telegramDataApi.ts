@@ -11,7 +11,17 @@ export const authApi = createApi({
         body: userData,
       }),
     }),
+    getToken: builder.mutation({
+      query: (credentials) => ({
+        url: '/auth/token',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(credentials),
+      }),
+    }),
   }),
 });
 
-export const { useRegisterUserMutation } = authApi;
+export const { useRegisterUserMutation, useGetTokenMutation } = authApi;
