@@ -6,6 +6,7 @@ import {setupListeners} from "@reduxjs/toolkit/query";
 import {authApi} from "@/Store/api/telegramDataApi";
 import filterReducer from './slices/filterSlice';
 import birthdayReducer from './slices/birthdaySlice';
+import authReducer from './slices/authSlice';
 
 export const store = configureStore({
   reducer: {
@@ -14,6 +15,7 @@ export const store = configureStore({
     favorites: favoritesReducer,
     filters: filterReducer,
     birthday: birthdayReducer,
+    auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>

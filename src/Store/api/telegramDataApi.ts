@@ -1,8 +1,20 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {RootState} from "@/Store/store";
+
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'https://innolan.ru/api/',
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
 
 export const authApi = createApi({
   reducerPath: 'authApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://innolan.ru/api/' }),
+  baseQuery,
   endpoints: (builder) => ({
     registerUser: builder.mutation({
       query: (userData) => ({
