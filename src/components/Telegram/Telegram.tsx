@@ -1,21 +1,31 @@
 import {FC, useEffect} from 'react';
 import {useGetTokenMutation, useRegisterUserMutation} from "@/Store/api/telegramDataApi";
-import {setToken} from "@/Store/slices/authSlice";
-import {useDispatch} from "react-redux";
+import {clearToken, setToken} from "@/Store/slices/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "@/Store/store";
 
 const TelegramApp: FC = () => {
   const [registerUser] = useRegisterUserMutation();
   const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
-    const token = localStorage.getItem('token');
-    if (token) {
-      dispatch(setToken(token));
+    const tokenFromStorage = localStorage.getItem('token');
+    if (tokenFromStorage) {
+      dispatch(setToken(tokenFromStorage));
     } else {
       handleTelegramAuth();
     }
-  }, [dispatch, registerUser, getToken]);
+  }, [dispatch]);
+
+  useEffect(() => {
+    if (token) {
+      validateToken();
+    } else {
+      handleTelegramAuth();
+    }
+  }, [token]);
 
   const handleTelegramAuth = async () => {
     if (typeof window !== 'undefined' && (window as any).Telegram) {
@@ -53,6 +63,16 @@ const TelegramApp: FC = () => {
       } catch (error) {
         console.error('Registration or authentication failed:', error);
       }
+    }
+  };
+
+  const validateToken = async () => {
+    try {
+      console.log('Token is valid');
+    } catch (error) {
+      dispatch(clearToken());
+      localStorage.removeItem('token');
+      handleTelegramAuth();
     }
   };
   return(
