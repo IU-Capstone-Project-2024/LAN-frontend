@@ -3,7 +3,7 @@ import profileReducer from './slices/profileSlice';
 import datingReducer from './slices/datingSlice';
 import favoritesReducer from './slices/favoritesSlice';
 import {setupListeners} from "@reduxjs/toolkit/query";
-import {telegramApi} from "@/Store/api/telegramDataApi";
+import {authApi} from "@/Store/api/telegramDataApi";
 import filterReducer from './slices/filterSlice';
 import birthdayReducer from './slices/birthdaySlice';
 
@@ -14,10 +14,10 @@ export const store = configureStore({
     favorites: favoritesReducer,
     filters: filterReducer,
     birthday: birthdayReducer,
-    [telegramApi.reducerPath]: telegramApi.reducer,
+    [authApi.reducerPath]: authApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(telegramApi.middleware),
+      getDefaultMiddleware().concat(authApi.middleware),
 });
 
 setupListeners(store.dispatch);

@@ -1,17 +1,17 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
 
-export const telegramApi = createApi({
-  reducerPath: 'telegramApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://innolan.ru/api/auth/signin' }),
+export const authApi = createApi({
+  reducerPath: 'authApi',
+  baseQuery: fetchBaseQuery({ baseUrl: 'https://innolan.ru/api/' }),
   endpoints: (builder) => ({
-    sendTelegramData: builder.mutation({
-      query: (data) => ({
-        url: 'telegram',
+    registerUser: builder.mutation({
+      query: (userData) => ({
+        url: '/auth/register',
         method: 'POST',
-        body: data,
+        body: userData,
       }),
     }),
   }),
 });
 
-export const { useSendTelegramDataMutation } = telegramApi;
+export const { useRegisterUserMutation } = authApi;
