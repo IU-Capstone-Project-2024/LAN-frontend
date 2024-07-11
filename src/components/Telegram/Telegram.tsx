@@ -21,14 +21,6 @@ const TelegramApp: FC = () => {
     }
   }, [dispatch]);
 
-  useEffect(() => {
-    if (token) {
-      validateToken();
-    } else {
-      handleTelegramAuth();
-    }
-  }, [token]);
-
   const handleTelegramAuth = async () => {
     if (typeof window !== 'undefined' && (window as any).Telegram) {
       const telegram = (window as any).Telegram.WebApp;
@@ -50,6 +42,7 @@ const TelegramApp: FC = () => {
 
       try {
         await registerUser(authData).unwrap();
+        await getTokenAndRedirect(user.username);
       } catch (error: any) {
         if (error.status === 409) {
           await getTokenAndRedirect(user.username);
@@ -84,15 +77,6 @@ const TelegramApp: FC = () => {
     handleTelegramAuth();
   }, []);
 
-  const validateToken = async () => {
-    try {
-      console.log('Token is valid');
-    } catch (error) {
-      dispatch(clearToken());
-      localStorage.removeItem('token');
-      handleTelegramAuth();
-    }
-  };
   return(
     <>
     </>
