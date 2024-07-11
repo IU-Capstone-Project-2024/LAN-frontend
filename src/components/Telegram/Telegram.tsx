@@ -50,23 +50,39 @@ const TelegramApp: FC = () => {
 
       try {
         await registerUser(authData).unwrap();
-
-        const tokenData = {
-          grant_type: 'password',
-          username: user.id,
-          password: telegram.initDataUnsafe.auth_date,
-        };
-
-        const response = await getToken(tokenData).unwrap();
-        localStorage.setItem('token', response.access_token);
-        dispatch(setToken(response.access_token));
-        router.push('/profile');
-        console.log('User registered and authenticated successfully');
-      } catch (error) {
-        console.error('Registration or authentication failed:', error);
+      } catch (error: any) {
+        if (error.status === 409) {
+          await getTokenAndRedirect(user.username);
+        } else {
+          console.error('Registration failed:', error);
+        }
       }
     }
   };
+
+  const getTokenAndRedirect = async (username: string) => {
+    const telegram = (window as any).Telegram.WebApp;
+    const user = telegram.initDataUnsafe.user;
+    
+    const tokenData = {
+      grant_type: 'password',
+      username: user.id,
+      password: telegram.initDataUnsafe.auth_date,
+    };
+
+    try {
+      const response = await getToken(tokenData).unwrap();
+      localStorage.setItem('token', response.access_token);
+      dispatch(setToken(response.access_token));
+      router.push('/profile');
+    } catch (error) {
+      console.error('Token retrieval failed:', error);
+    }
+  };
+
+  useEffect(() => {
+    handleTelegramAuth();
+  }, []);
 
   const validateToken = async () => {
     try {
