@@ -13,6 +13,7 @@ export interface Profile {
   photos: string[];
   name: string;
   age: number;
+  gender: string;
   religion: string;
   about: string;
   interests: string[];

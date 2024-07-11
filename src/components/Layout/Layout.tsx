@@ -2,6 +2,7 @@
 
 import React, {useState} from "react";
 import {usePathname, useRouter} from "next/navigation";
+import { useEffect } from 'react';
 import styles from "@/Styles/Layout/Layout.module.scss";
 import ActionButtons from "@/components/Dating/ActionButtons/ActionButtons";
 
@@ -17,6 +18,14 @@ const Layout = () => {
   const router = useRouter();
   const pathname = usePathname();
   const [showNotification, setShowNotification] = useState(false);
+
+  useEffect(() => {
+    const currentStep = localStorage.getItem('currentStep');
+    if (currentStep) {
+      router.push(`/auth/step_${currentStep}`);
+      console.log(`Redirecting to step ${currentStep}`);
+    }
+  }, [router]);
 
   const handleNavigation = (route: string) => {
     if (route === "#") {

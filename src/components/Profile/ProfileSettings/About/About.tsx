@@ -6,9 +6,10 @@ import { setAbout } from '@/Store/slices/profileSlice';
 
 interface AboutProps{
   title:string
+  updateAbout: (about: string) => void;
 }
 
-const About: FC<AboutProps> = ({title}) => {
+const About: FC<AboutProps> = ({title, updateAbout }) => {
   const profile = useSelector((state: RootState) => state.profile);
   const dispatch = useDispatch();
   const [profileState, setProfileState] = useState({
@@ -25,7 +26,7 @@ const About: FC<AboutProps> = ({title}) => {
       ...prevState,
       about: value,
     }));
-    dispatch(setAbout(value));
+    updateAbout(value);
   };
 
   return (
@@ -35,7 +36,7 @@ const About: FC<AboutProps> = ({title}) => {
             name="about"
             value={profileState.about}
             onChange={handleTextareaChange}
-            placeholder="Меня зовут Кира Йошикагэ. Мне 33 года. Мой дом находится в северо-восточной части Морио, в районе поместий. Работаю до утра сплю без особых проблем. Утром я просыпаюсь, не чувствуя ни усталости, ни стресса."
+            placeholder="Меня зовут Кира Йошикагэ"
         />
       </div>
   );

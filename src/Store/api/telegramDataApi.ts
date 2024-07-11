@@ -1,17 +1,39 @@
 import { createApi, fetchBaseQuery } from '@reduxjs/toolkit/query/react';
+import {RootState} from "@/Store/store";
 
-export const telegramApi = createApi({
-  reducerPath: 'telegramApi',
-  baseQuery: fetchBaseQuery({ baseUrl: 'https://innolan.ru/api/auth/signin' }),
+const baseQuery = fetchBaseQuery({
+  baseUrl: 'https://innolan.ru/api/',
+  prepareHeaders: (headers, { getState }) => {
+    const token = (getState() as RootState).auth.token;
+    if (token) {
+      headers.set('authorization', `Bearer ${token}`);
+    }
+    return headers;
+  },
+});
+
+export const authApi = createApi({
+  reducerPath: 'authApi',
+  baseQuery,
   endpoints: (builder) => ({
-    sendTelegramData: builder.mutation({
-      query: (data) => ({
-        url: 'telegram',
+    registerUser: builder.mutation({
+      query: (userData) => ({
+        url: '/auth/register',
         method: 'POST',
-        body: data,
+        body: userData,
+      }),
+    }),
+    getToken: builder.mutation({
+      query: (credentials) => ({
+        url: '/auth/token',
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/x-www-form-urlencoded',
+        },
+        body: new URLSearchParams(credentials),
       }),
     }),
   }),
 });
 
-export const { useSendTelegramDataMutation } = telegramApi;
+export const { useRegisterUserMutation, useGetTokenMutation } = authApi;

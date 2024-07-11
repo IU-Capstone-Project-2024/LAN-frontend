@@ -1,36 +1,85 @@
-import { useEffect, useState } from 'react';
-import {useSendTelegramDataMutation} from "@/Store/api/telegramDataApi";
+import {FC, useEffect} from 'react';
+import {useGetTokenMutation, useRegisterUserMutation} from "@/Store/api/telegramDataApi";
+import {clearToken, setToken} from "@/Store/slices/authSlice";
+import {useDispatch, useSelector} from "react-redux";
+import {RootState} from "@/Store/store";
 
-const TelegramApp: React.FC = () => {
-  const [tg, setTg] = useState<any>(null);
-  const [sendTelegramData] = useSendTelegramDataMutation();
+const TelegramApp: FC = () => {
+  const [registerUser] = useRegisterUserMutation();
+  const [getToken] = useGetTokenMutation();
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
-    if (typeof window !== 'undefined' && 'Telegram' in window) {
-      const telegram = (window as any).Telegram.WebApp;
-      setTg(telegram);
-      telegram.ready();
+    const tokenFromStorage = localStorage.getItem('token');
+    if (tokenFromStorage) {
+      dispatch(setToken(tokenFromStorage));
+    } else {
+      handleTelegramAuth();
     }
-  }, []);
+  }, [dispatch]);
 
-  const sendMessage = async () => {
-    if (tg) {
-      const { id, first_name, last_name, username, photo_url} = tg.initDataUnsafe.user;
-      await sendTelegramData({ id, first_name, last_name, username, photo_url});
+  useEffect(() => {
+    if (token) {
+      validateToken();
+    } else {
+      handleTelegramAuth();
+    }
+  }, [token]);
+
+  const handleTelegramAuth = async () => {
+    if (typeof window !== 'undefined' && (window as any).Telegram) {
+      const telegram = (window as any).Telegram.WebApp;
+      telegram.ready();
+
+      const user = telegram.initDataUnsafe.user;
+      const authData = {
+        auth_date: telegram.initDataUnsafe.auth_date,
+        hash: telegram.initDataUnsafe.hash,
+        query_id: telegram.initDataUnsafe.query_id,
+        user: {
+          first_name: user.first_name,
+          id: user.id,
+          last_name: user.last_name,
+          photo_url: user.photo_url,
+          username: user.username,
+        },
+      };
+
+      try {
+        await registerUser(authData).unwrap();
+
+        const tokenData = {
+          grant_type: 'password',
+          username: user.id,
+          password: telegram.initDataUnsafe.auth_date,
+        };
+
+        const response = await getToken(tokenData).unwrap();
+        localStorage.setItem('token', response.access_token);
+        dispatch(setToken(response.access_token));
+
+        console.log('User registered and authenticated successfully');
+      } catch (error) {
+        console.error('Registration or authentication failed:', error);
+      }
     }
   };
 
-  return (
-      <div>
-        <h1>Welcome to Telegram Mini App</h1>
-        {tg && (
-            <div>
-              <p>User: {tg.initDataUnsafe.user?.first_name}</p>
-              <button onClick={sendMessage}>Send User Data</button>
-            </div>
-        )}
-      </div>
+  const validateToken = async () => {
+    try {
+      console.log('Token is valid');
+    } catch (error) {
+      dispatch(clearToken());
+      localStorage.removeItem('token');
+      handleTelegramAuth();
+    }
+  };
+  return(
+    <>
+    </>
   );
+
 };
 
 export default TelegramApp;

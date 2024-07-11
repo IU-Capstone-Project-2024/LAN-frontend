@@ -13,7 +13,7 @@ import {
   setSocialLinks,
   setPhotos,
   setModalPhoto,
-  setShowModal, setGender,
+  setShowModal, setGender, setAbout,
 } from "@/Store/slices/profileSlice";
 import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPhoto";
 import CoLifeSettings from "@/components/Profile/ProfileSettings/CoLife/CoLife";
@@ -80,6 +80,10 @@ const ProfileSettings: React.FC = () => {
     dispatch(setGender(option));
   };
 
+  const updateAbout = (about: string) => {
+    dispatch(setAbout(about));
+  };
+
 
   return (
     <div className={styles['profile-settings']}>
@@ -106,7 +110,7 @@ const ProfileSettings: React.FC = () => {
         </div>
       </div>
       <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
-      <About title="О себе"></About>
+      <About updateAbout={updateAbout} title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>
       <SocialLinks/>
