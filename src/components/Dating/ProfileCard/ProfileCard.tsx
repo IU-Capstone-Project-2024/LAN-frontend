@@ -34,7 +34,7 @@ const ProfileCard: React.FC<ProfileCardProps> = ({ profile }) => {
                        width_icon={30}
                        height_icon={30}
         />
-        <ProfileInfo coLife={profile.coLife} socialLinks={profile.socialLinks} truncateLink={truncateLink} screenWidth={screenWidth} about={profile.about} interests={profile.interests} name={profile.name} age={profile.age} religion={profile.religion} />
+        <ProfileInfo gender={profile.gender} coLife={profile.coLife} socialLinks={profile.socialLinks} truncateLink={truncateLink} screenWidth={screenWidth} about={profile.about} interests={profile.interests} name={profile.name} age={profile.age} religion={profile.religion} />
       </div>
   );
 };

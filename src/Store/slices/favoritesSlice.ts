@@ -1,8 +1,14 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Profile } from './datingSlice';
+
+interface Favorite {
+  id: number;
+  name: string;
+  age: number;
+  image: string;
+}
 
 interface FavoritesState {
-  favorites: Profile[];
+  favorites: Favorite[];
 }
 
 const initialState: FavoritesState = {
@@ -13,14 +19,11 @@ const favoritesSlice = createSlice({
   name: 'favorites',
   initialState,
   reducers: {
-    addFavorite(state, action: PayloadAction<Profile>) {
-      state.favorites.push(action.payload);
-    },
-    removeFavorite(state, action: PayloadAction<number>) {
-      state.favorites = state.favorites.filter(profile => profile.id !== action.payload);
+    setFavorites: (state, action: PayloadAction<Favorite[]>) => {
+      state.favorites = action.payload;
     },
   },
 });
 
-export const { addFavorite, removeFavorite } = favoritesSlice.actions;
+export const { setFavorites } = favoritesSlice.actions;
 export default favoritesSlice.reducer;
