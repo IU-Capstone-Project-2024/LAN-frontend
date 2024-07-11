@@ -10,6 +10,12 @@ interface BirthdayInputProps {
   title?: string;
 }
 
+const formatToISODate = (dateString: string): string => {
+  const [day, month, year] = dateString.split('.');
+  const date = new Date(`${year}-${month}-${day}`);
+  return date.toISOString();
+};
+
 const BirthdayInput: FC<BirthdayInputProps> = ({ title }) => {
   const dispatch = useDispatch();
   const birthday = useSelector((state: RootState) => state.birthday.date);
@@ -24,8 +30,9 @@ const BirthdayInput: FC<BirthdayInputProps> = ({ title }) => {
 
   const handleBlur = () => {
     if (inputValue && isValidDate(inputValue, registrationDate)) {
+      const isoDate = formatToISODate(inputValue);
       setError(null);
-      dispatch(setBirthday(inputValue));
+      dispatch(setBirthday(isoDate));
     } else if (inputValue) {
       setError('Недопустимая дата');
     } else {
