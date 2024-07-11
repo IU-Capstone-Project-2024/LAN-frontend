@@ -13,6 +13,7 @@ interface CoLife {
 interface ProfileDetailsProps {
   name?: string;
   age?: number;
+  gender: string;
   religion?: string;
   about?: string;
   interests?: string[];
@@ -25,6 +26,7 @@ interface ProfileDetailsProps {
 const ProfileDetails: FC<ProfileDetailsProps> = ({
                                                    name = 'Имя',
                                                    age,
+                                                   gender,
                                                    religion,
                                                    about,
                                                    interests = [],
@@ -38,16 +40,17 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
   const renderAgeReligion = () => {
     const displayAge = age || defaultAge;
     const displayReligion = religion || defaultReligion;
+    const displayGender = gender
 
     if (!age && !religion) {
-      return <p className={styles['age']}>0 лет</p>;
+      return <p className={styles['age']}>0 лет | {displayGender}</p>;
     }
 
     if (age && !religion) {
-      return <p className={styles['age']}>{displayAge} лет</p>;
+      return <p className={styles['age']}>{displayAge} лет | {displayGender}</p>;
     }
 
-    return <p className={styles['age']}>{displayAge} лет | {displayReligion}</p>;
+    return <p className={styles['age']}>{displayAge} лет | {displayGender} | {displayReligion}</p>;
   };
 
   return (

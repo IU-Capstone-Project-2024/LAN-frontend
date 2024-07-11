@@ -11,41 +11,40 @@ interface CoLifeProps {
 
 const CoLifeSettings: FC<CoLifeProps> = ({title}) => {
   const dispatch = useDispatch();
-  const profile = useSelector((state: RootState) => state.profile);
+  const coLifeSettings = useSelector((state: RootState) => state.profile.coLife);
 
-  const handleCoLifeChange = (e: ChangeEvent<HTMLInputElement>, name: string) => {
-    const value = Number(e.target.value);
-    dispatch(setCoLife({ ...profile.coLife, [name]: value }));
+  const handleCoLifeChange = (key: string, value: any) => {
+    dispatch(setCoLife({ ...coLifeSettings, [key]: value }));
   };
 
   return (
     <div className={styles['co-life']}>
       <label className={styles.title}>{title}</label>
       <RangeSlider
-        value={profile.coLife.nightOwl}
+        value={coLifeSettings.nightOwl}
         leftLabel={'Сова'}
         rightLabel={'Жаворонок'}
-        onChange={(e) => handleCoLifeChange(e, 'nightOwl')}/>
+        onChange={(e) => handleCoLifeChange('nightOwl', Number(e.target.value))}/>
       <RangeSlider
-          value={profile.coLife.cleanliness}
+          value={coLifeSettings.cleanliness}
           leftLabel={'Чистота важна'}
           rightLabel={'Чистота не так важна'}
-          onChange={(e) => handleCoLifeChange(e, 'cleanliness')}/>
+          onChange={(e) => handleCoLifeChange('cleanliness', Number(e.target.value))}/>
       <RangeSlider
-          value={profile.coLife.noiseLevel}
+          value={coLifeSettings.noiseLevel}
           leftLabel={'Люболю тишину и покой'}
           rightLabel={'Люблю шум и компанию'}
-          onChange={(e) => handleCoLifeChange(e, 'noiseLevel')}/>
+          onChange={(e) => handleCoLifeChange('noiseLevel', Number(e.target.value))}/>
       <RangeSlider
-          value={profile.coLife.alcohol}
+          value={coLifeSettings.alcohol}
           leftLabel={'Пью алкоголь'}
           rightLabel={'Не пью'}
-          onChange={(e) => handleCoLifeChange(e, 'alcohol')}/>
+          onChange={(e) => handleCoLifeChange('alcohol', Number(e.target.value))}/>
       <RangeSlider
-          value={profile.coLife.smoking}
+          value={coLifeSettings.smoking}
           leftLabel={'Курю'}
           rightLabel={'Не курю'}
-          onChange={(e) => handleCoLifeChange(e, 'smoking')}/>
+          onChange={(e) => handleCoLifeChange('smoking', Number(e.target.value))}/>
     </div>
   );
 };
