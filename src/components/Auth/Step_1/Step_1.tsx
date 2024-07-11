@@ -19,6 +19,7 @@ import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/Birthd
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 import { setBirthday } from '@/Store/slices/birthdaySlice';
 import TelegramApp from '@/components/Telegram/Telegram';
+import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
 
 const Step1: React.FC = () => {
   const router = useRouter();
@@ -28,6 +29,7 @@ const Step1: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const selectedGender = useSelector((state: RootState) => state.profile.gender);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     const savedProfileStep1 = JSON.parse(localStorage.getItem('profileStep1') || '{}');
@@ -71,7 +73,20 @@ const Step1: React.FC = () => {
   };
 
   const nextStep = () => {
-    router.push('/auth/step_2');
+    const updatedProfile = {
+      first_name: profile.name,
+      photo_url: profile.photos[0],
+      date_of_birth: birthday,
+      sex: selectedGender,
+      religion: profile.religion,
+    };
+
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      router.push('/auth/step_2');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
   };
 
   const handleModalClose = () => {

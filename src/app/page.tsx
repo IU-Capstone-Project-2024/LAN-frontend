@@ -19,5 +19,5 @@ export default function Home() {
     }
   }, [dispatch, router]);
 
-  return <div>Загрузка...</div>;
+  return <></>;
 };

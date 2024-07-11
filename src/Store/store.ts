@@ -7,6 +7,7 @@ import {authApi} from "@/Store/api/telegramDataApi";
 import filterReducer from './slices/filterSlice';
 import birthdayReducer from './slices/birthdaySlice';
 import authReducer from './slices/authSlice';
+import { profileApi } from './api/profileApi';
 
 export const store = configureStore({
   reducer: {
@@ -17,9 +18,10 @@ export const store = configureStore({
     birthday: birthdayReducer,
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
+    [profileApi.reducerPath]: profileApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authApi.middleware),
+      getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware),
 });
 
 setupListeners(store.dispatch);
