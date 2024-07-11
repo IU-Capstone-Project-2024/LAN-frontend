@@ -18,6 +18,7 @@ import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPho
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 import { setBirthday } from '@/Store/slices/birthdaySlice';
+import TelegramApp from '@/components/Telegram/Telegram';
 
 const Step1: React.FC = () => {
   const router = useRouter();
@@ -91,6 +92,7 @@ const Step1: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <TelegramApp/>
       <h1>Создание профиля (1/3)</h1>
       <div className={styles["UploadPhoto"]}>
         <span className={styles["span1"]}>Добавьте фото</span>

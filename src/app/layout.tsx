@@ -22,7 +22,6 @@ export default function RootLayout({
       </head>
       <Provider store={store}>
         <body className={montserrat.className}>
-        <Telegram/>
         <div>
           {children}
         </div>

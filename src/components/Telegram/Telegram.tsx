@@ -3,11 +3,13 @@ import {useGetTokenMutation, useRegisterUserMutation} from "@/Store/api/telegram
 import {clearToken, setToken} from "@/Store/slices/authSlice";
 import {useDispatch, useSelector} from "react-redux";
 import {RootState} from "@/Store/store";
+import { useRouter } from 'next/navigation';
 
 const TelegramApp: FC = () => {
   const [registerUser] = useRegisterUserMutation();
   const [getToken] = useGetTokenMutation();
   const dispatch = useDispatch();
+  const router = useRouter();
   const token = useSelector((state: RootState) => state.auth.token);
 
   useEffect(() => {
@@ -58,7 +60,7 @@ const TelegramApp: FC = () => {
         const response = await getToken(tokenData).unwrap();
         localStorage.setItem('token', response.access_token);
         dispatch(setToken(response.access_token));
-
+        router.push('/profile');
         console.log('User registered and authenticated successfully');
       } catch (error) {
         console.error('Registration or authentication failed:', error);
