@@ -67,7 +67,6 @@ const TelegramApp: FC = () => {
       const response = await getToken(tokenData).unwrap();
       localStorage.setItem('token', response.access_token);
       dispatch(setToken(response.access_token));
-      router.push('/profile');
     } catch (error) {
       console.error('Token retrieval failed:', error);
     }
