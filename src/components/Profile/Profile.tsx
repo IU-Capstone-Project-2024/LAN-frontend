@@ -7,7 +7,6 @@ import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProfileInfo from "@/components/UniversalComponents/ProfileInfo/ProfileInfo";
 import ProfileHeader from "@/components/UniversalComponents/ProfileHeader/ProfileHeader";
 import {RootState} from "@/Store/store";
-import { useEffect } from 'react';
 import {useSelector} from "react-redux";
 import { useGetUserInfoQuery } from '@/Store/api/profileApi';
 
@@ -16,8 +15,7 @@ const Profile: FC = () => {
   const [screenWidth] = useState<number>(0);
   const profile = useSelector((state: RootState) => state.profile);
   const birthday = useSelector((state: RootState) => state.birthday);
-  const token = useSelector((state: RootState) => state.auth.token);
-  const { data: userInfo, error } = useGetUserInfoQuery({});
+  const { data: userInfo } = useGetUserInfoQuery({});
   
   const handleEditProfile = () => {
     router.push('/profile/settings');
@@ -30,6 +28,10 @@ const Profile: FC = () => {
       return link.length > 35 ? `${link.slice(0, 35)}...` : link;
     }
   };
+
+  if (!userInfo) {
+    return <div>Загрузка...</div>;
+  }
 
   return (
       <div className={styles.profile}>

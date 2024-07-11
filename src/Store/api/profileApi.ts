@@ -17,7 +17,7 @@ export const profileApi = createApi({
   baseQuery,
   endpoints: (builder) => ({
     getUserInfo: builder.query({
-      query: (user) => ({
+      query: () => ({
         url: '/user/me',
         method: 'GET',
       }),
