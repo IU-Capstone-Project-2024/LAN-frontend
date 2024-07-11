@@ -51,8 +51,8 @@ const TelegramApp: FC = () => {
 
         const tokenData = {
           grant_type: 'password',
-          username: user.username,
-          password: 'user_password', // В реальном приложении пароль должен быть получен безопасным способом
+          username: user.id,
+          password: telegram.initDataUnsafe.auth_date,
         };
 
         const response = await getToken(tokenData).unwrap();
