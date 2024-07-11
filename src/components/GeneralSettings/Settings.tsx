@@ -19,7 +19,7 @@ const SettingsPage = () => {
   const handleLogout = () => {
     localStorage.removeItem('token');
     dispatch(clearToken());
-    router.push('/register');
+    router.push('/auth/step_1');
   };
 
   return (

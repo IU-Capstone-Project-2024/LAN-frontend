@@ -30,7 +30,7 @@ const Profile: FC = () => {
 
   useEffect(() => {
     if (!token) {
-      router.push('/register');
+      router.push('/auth/step_1');
     }
   }, [token, router]);
 
