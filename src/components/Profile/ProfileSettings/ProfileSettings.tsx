@@ -109,7 +109,10 @@ const ProfileSettings: React.FC = () => {
           <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange} placeholder='Атеист' />
         </div>
       </div>
-      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
+      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={[
+    { value: '1', label: 'Мужчина' },
+    { value: '2', label: 'Женщина' }
+  ]}/>
       <About updateAbout={updateAbout} title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>

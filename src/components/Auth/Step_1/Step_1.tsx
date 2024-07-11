@@ -77,7 +77,7 @@ const Step1: React.FC = () => {
       first_name: profile.name,
       photo_url: profile.photos[0],
       date_of_birth: birthday,
-      sex: selectedGender,
+      sex: profile.gender,
       religion: profile.religion,
     };
 
@@ -125,7 +125,10 @@ const Step1: React.FC = () => {
         <span className={styles["span"]}>Как вас зовут?</span>
         <input type="text" placeholder="Ваше имя" name="name" value={profile.name} onChange={handleNameChange} />
       </div>
-      <SelectSex selectedGender={selectedGender} safeGender={handleSelectGender} title={'Ваш пол:'} options={['Мужской', 'Женский']} />
+      <SelectSex selectedGender={selectedGender} safeGender={handleSelectGender} title={'Ваш пол:'} options={[
+    { value: '1', label: 'Мужчина' },
+    { value: '2', label: 'Женщина' }
+  ]} />
       <div className={styles.Birthday}>
         <BirthdayInput title='Дата рождения:' />
       </div>
