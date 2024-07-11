@@ -28,12 +28,6 @@ const Profile: FC = () => {
     }
   };
 
-  useEffect(() => {
-    if (!token) {
-      router.push('/auth/step_1');
-    }
-  }, [token, router]);
-
   return (
       <div className={styles.profile}>
         <ProfileHeader onAction={handleEditProfile}
