@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC, useState } from 'react';
+import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../Styles/Profile/profile.module.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -12,11 +12,25 @@ import { useGetUserInfoQuery } from '@/Store/api/profileApi';
 
 const Profile: FC = () => {
   const router = useRouter();
-  const [screenWidth] = useState<number>(0);
+  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
   const profile = useSelector((state: RootState) => state.profile);
   const birthday = useSelector((state: RootState) => state.birthday);
-  const { data: userInfo } = useGetUserInfoQuery({});
+  const { data: userInfo, refetch } = useGetUserInfoQuery({});
   
+  useEffect(() => {
+    const handleResize = () => {
+      setScreenWidth(window.innerWidth);
+    };
+
+    window.addEventListener('resize', handleResize);
+
+    refetch();
+
+    return () => {
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [refetch]);
+
   const handleEditProfile = () => {
     router.push('/profile/settings');
   };
@@ -47,12 +61,12 @@ const Profile: FC = () => {
                      truncateLink={truncateLink}
                      coLife={profile.coLife}
                      about={userInfo.about}
-                     interests={userInfo.interests}
+                     interests={userInfo.hobby}
                      name={userInfo.first_name}
                      age={birthday.age}
                      gender={userInfo.sex}
                      religion={userInfo.religion}
-                     socialLinks={userInfo.socialLinks}
+                     socialLinks={userInfo.soc_media}
         />
       </div>
   );

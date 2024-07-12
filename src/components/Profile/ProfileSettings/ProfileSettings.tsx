@@ -21,9 +21,9 @@ import Interests from "@/components/Profile/ProfileSettings/Interests/Interests"
 import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
-import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 import { useGetUserInfoQuery, useUpdateUserInfoMutation } from '@/Store/api/profileApi';
 import { setUserInfo } from '@/Store/slices/birthdaySlice';
+import SelectGender from '@/components/UniversalComponents/SelectGender/SelectGender';
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
@@ -76,6 +76,7 @@ const ProfileSettings: React.FC = () => {
   const handleSave = () => {
     const updatedProfile = {
       first_name: profile.name,
+      about: profile.about,
       photo_url: profile.photos[0],
       date_of_birth: birthday,
       sex: profile.gender,
@@ -135,7 +136,7 @@ const ProfileSettings: React.FC = () => {
           <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange} placeholder='Атеист' />
         </div>
       </div>
-      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
+      <SelectGender safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
       <About updateAbout={updateAbout} title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>
