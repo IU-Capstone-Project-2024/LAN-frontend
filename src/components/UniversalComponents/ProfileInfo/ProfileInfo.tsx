@@ -12,7 +12,7 @@ interface CoLife {
 
 interface ProfileDetailsProps {
   name?: string;
-  age?: number;
+  age: number;
   gender: string;
   religion?: string;
   about?: string;

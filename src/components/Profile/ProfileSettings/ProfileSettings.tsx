@@ -29,26 +29,35 @@ const ProfileSettings: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
-  const birthday = useSelector((state: RootState) => state.birthday.date);  
-  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const birthday = useSelector((state: RootState) => state.birthday.date);
   const selectedGender = useSelector((state: RootState) => state.profile.gender);
-  const { data: userInfo } = useGetUserInfoQuery({});
+  const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
+  const { data: userInfo, isLoading, isFetching } = useGetUserInfoQuery({});
   const [updateUserInfo] = useUpdateUserInfoMutation();
-
+  
   useEffect(() => {
     if (userInfo) {
       dispatch(setUserInfo(userInfo));
+      setProfileState({
+        name: userInfo.first_name || '',
+        age: userInfo.date_of_birth || '',
+        religion: userInfo.religion || '',
+        about: userInfo.about || '',
+        interests: userInfo.hobby || '',
+        coLife: userInfo.coLife || '',
+        socialLinks: userInfo.soc_media || [],
+      });
     }
   }, [userInfo, dispatch]);
-
+  
   const [profileState, setProfileState] = useState({
-    name: profile.name,
-    age: profile.age,
-    religion: profile.religion,
-    about: profile.about,
-    interests: profile.interests,
-    coLife: profile.coLife,
-    socialLinks: profile.socialLinks,
+    name: '',
+    age: '',
+    religion: '',
+    about: '',
+    interests: '',
+    coLife: '',
+    socialLinks: [],
   });
 
   const handleInputChange = (e: ChangeEvent<HTMLInputElement>) => {
@@ -73,7 +82,7 @@ const ProfileSettings: React.FC = () => {
     }
   };
 
-  const handleSave = () => {
+  const handleSave = async () => {
     const updatedProfile = {
       first_name: profile.name,
       about: profile.about,
@@ -86,12 +95,11 @@ const ProfileSettings: React.FC = () => {
     };
 
     try {
-      updateUserInfo(updatedProfile).unwrap();
+      await updateUserInfo(updatedProfile).unwrap();
       router.push('/profile');
     } catch (error) {
       console.error('Failed to update user info:', error);
     }
-    
   };
 
   const handlePhotoAdd = (photo: string) => {
@@ -111,6 +119,9 @@ const ProfileSettings: React.FC = () => {
     dispatch(setAbout(about));
   };
 
+  if (isLoading || isFetching) {
+    return <div>Загрузка...</div>;
+  }
 
   return (
     <div className={styles['profile-settings']}>

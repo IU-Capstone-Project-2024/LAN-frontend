@@ -2,12 +2,12 @@ import { createSlice, PayloadAction } from '@reduxjs/toolkit';
 
 interface BirthdayState {
   date: string;
-  age: number | undefined;
+  age: number;
 }
 
 const initialState: BirthdayState = {
   date: '',
-  age: undefined,
+  age: 0,
 };
 
 const calculateAge = (birthday: string): number => {
