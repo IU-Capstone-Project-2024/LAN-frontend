@@ -16,9 +16,9 @@ interface ProfileDetailsProps {
   gender: string;
   religion?: string;
   about?: string;
-  interests?: string[];
+  interests?: string[] | null;
   coLife: CoLife;
-  socialLinks: string[];
+  socialLinks: string[] | null;
   truncateLink: (link: string) => string;
   screenWidth: number;
 }
@@ -69,7 +69,7 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
               <p>{about}</p>
             </div>
         )}
-        {interests.length > 0 && (
+        {interests && interests.length > 0 && (
             <div className={styles["interests"]}>
               <h2>Интересы</h2>
               <div className={styles["interests-list"]}>
@@ -87,7 +87,7 @@ const ProfileDetails: FC<ProfileDetailsProps> = ({
           <ReadOnlySlider labelStart="Пью алкоголь" labelEnd="Не пью" value={coLife.alcohol} min={-1} max={1} />
           <ReadOnlySlider labelStart="Курю" labelEnd="Не курю" value={coLife.smoking} min={-1} max={1} />
         </div>
-        {socialLinks.length > 0 && (
+        {socialLinks && socialLinks.length > 0 && (
             <div className={styles["social-links"]}>
               <h2>Соц. сети</h2>
               <ul>
