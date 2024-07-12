@@ -27,7 +27,7 @@ const Profile: FC = () => {
         gender: userInfo.sex,
         religion: userInfo.religion,
         about: userInfo.about,
-        interests: userInfo.hobby.split(','),
+        interests: userInfo.hobby,
         coLife: {
           nightOwl: userInfo.nightOwl,
           cleanliness: userInfo.cleanliness,
