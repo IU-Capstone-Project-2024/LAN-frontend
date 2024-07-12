@@ -13,7 +13,7 @@ import { setProfile } from '@/Store/slices/profileSlice';
 
 const Profile: FC = () => {
   const router = useRouter();
-  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  const [screenWidth] = useState<number>(0);
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
   const { data: userInfo, isLoading, error } = useGetUserInfoQuery({});
@@ -27,7 +27,7 @@ const Profile: FC = () => {
         gender: userInfo.sex,
         religion: userInfo.religion,
         about: userInfo.about,
-        interests: userInfo.hobby.split(','), // предполагается, что интересы хранятся в виде строки, разделенной запятыми
+        interests: userInfo.hobby.split(','),
         coLife: {
           nightOwl: userInfo.nightOwl,
           cleanliness: userInfo.cleanliness,
