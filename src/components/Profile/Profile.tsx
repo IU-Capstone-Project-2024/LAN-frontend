@@ -12,24 +12,10 @@ import { useGetUserInfoQuery } from '@/Store/api/profileApi';
 
 const Profile: FC = () => {
   const router = useRouter();
-  const [screenWidth, setScreenWidth] = useState<number>(0);
+  const [screenWidth] = useState<number>(0);
   const profile = useSelector((state: RootState) => state.profile);
   const birthday = useSelector((state: RootState) => state.birthday);
-  const { data: userInfo, refetch } = useGetUserInfoQuery({});
-  
-  useEffect(() => {
-    const handleResize = () => {
-      setScreenWidth(window.innerWidth);
-    };
-
-    window.addEventListener('resize', handleResize);
-
-    refetch();
-
-    return () => {
-      window.removeEventListener('resize', handleResize);
-    };
-  }, [refetch]);
+  const { data: userInfo, isLoading } = useGetUserInfoQuery({});
 
   const handleEditProfile = () => {
     router.push('/profile/settings');
@@ -43,7 +29,7 @@ const Profile: FC = () => {
     }
   };
 
-  if (!userInfo) {
+  if (isLoading) {
     return <div>Загрузка...</div>;
   }
 

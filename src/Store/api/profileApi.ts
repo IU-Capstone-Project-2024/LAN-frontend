@@ -15,12 +15,14 @@ const baseQuery = fetchBaseQuery({
 export const profileApi = createApi({
   reducerPath: 'profileApi',
   baseQuery,
+  tagTypes: ['User'],
   endpoints: (builder) => ({
     getUserInfo: builder.query({
       query: () => ({
         url: '/user/me',
         method: 'GET',
       }),
+      providesTags: ['User'], 
     }),
     updateUserInfo: builder.mutation({
       query: (userData) => ({
@@ -28,6 +30,7 @@ export const profileApi = createApi({
         method: 'PUT',
         body: userData,
       }),
+      invalidatesTags: ['User'],
     }),
   }),
 });
