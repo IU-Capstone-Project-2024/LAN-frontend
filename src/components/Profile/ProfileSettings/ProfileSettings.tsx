@@ -39,6 +39,7 @@ const ProfileSettings: React.FC = () => {
     if (userInfo) {
       dispatch(setUserInfo(userInfo));
       setProfileState({
+        photos: userInfo.photo_url || '',
         name: userInfo.first_name || '',
         age: userInfo.date_of_birth || '',
         religion: userInfo.religion || '',
@@ -51,6 +52,7 @@ const ProfileSettings: React.FC = () => {
   }, [userInfo, dispatch]);
   
   const [profileState, setProfileState] = useState({
+    photos: '',
     name: '',
     age: '',
     religion: '',

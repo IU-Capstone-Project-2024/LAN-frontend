@@ -21,7 +21,7 @@ const Profile: FC = () => {
   useEffect(() => {
     if (userInfo) {
       const profileData = {
-        photos: userInfo.photos,
+        photos: userInfo.photos || [],
         name: userInfo.first_name,
         age: calculateAge(userInfo.date_of_birth),
         gender: userInfo.sex,
