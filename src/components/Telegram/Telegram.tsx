@@ -20,62 +20,11 @@ const TelegramApp: FC = () => {
       handleTelegramAuth();
     }
   }, [dispatch]);
-      
-  useEffect(() => {
-    if (token) {
-      validateToken();
-    } else {
-      handleTelegramAuth();
-    }
-  }, [token]);
+
   const handleTelegramAuth = async () => {
     if (typeof window !== 'undefined' && (window as any).Telegram) {
       const telegram = (window as any).Telegram.WebApp;
       telegram.ready();
-
-      const user = telegram.initDataUnsafe.user;
-      const authData = {
-        auth_date: telegram.initDataUnsafe.auth_date,
-        hash: telegram.initDataUnsafe.hash,
-        query_id: telegram.initDataUnsafe.query_id,
-        user: {
-          first_name: user.first_name,
-          id: user.id,
-          last_name: user.last_name,
-          photo_url: user.photo_url,
-          username: user.username,
-        },
-      };
-
-      try {
-        await registerUser(authData).unwrap();
-
-        const tokenData = {
-          grant_type: 'password',
-          username: user.id,
-          password: telegram.initDataUnsafe.auth_date,
-        };
-
-        const response = await getToken(tokenData).unwrap();
-        localStorage.setItem('token', response.access_token);
-        dispatch(setToken(response.access_token));
-
-        console.log('User registered and authenticated successfully');
-      } catch (error) {
-        console.error('Registration or authentication failed:', error);
-      }
-    }
-  };
-
-  const validateToken = async () => {
-    try {
-      console.log('Token is valid');
-    } catch (error) {
-      dispatch(clearToken());
-      localStorage.removeItem('token');
-      handleTelegramAuth();
-    }
-  };
 
       const user = telegram.initDataUnsafe.user;
       const authData = {
@@ -126,6 +75,7 @@ const TelegramApp: FC = () => {
   useEffect(() => {
     handleTelegramAuth();
   }, []);
+
   return(
     <>
     </>

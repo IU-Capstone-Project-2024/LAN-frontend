@@ -10,7 +10,6 @@ import birthdayReducer from './slices/birthdaySlice';
 import authReducer from './slices/authSlice';
 import { profileApi } from './api/profileApi';
 
-
 export const store = configureStore({
   reducer: {
     profile: profileReducer,
@@ -21,18 +20,13 @@ export const store = configureStore({
     birthday: birthdayReducer,
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
-  },
-  middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authApi.middleware),
     [profileApi.reducerPath]: profileApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
       getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware),
-
 });
 
 setupListeners(store.dispatch);
 
 export type RootState = ReturnType<typeof store.getState>;
 export type AppDispatch = typeof store.dispatch;
-

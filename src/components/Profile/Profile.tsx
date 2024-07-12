@@ -1,6 +1,6 @@
 "use client"
 
-import React, { FC, useEffect, useState } from 'react';
+import React, { FC, useState } from 'react';
 import { useRouter } from 'next/navigation';
 import styles from '../../Styles/Profile/profile.module.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
@@ -50,9 +50,6 @@ const Profile: FC = () => {
                      interests={userInfo.hobby}
                      name={userInfo.first_name}
                      age={birthday.age}
-                     gender={profile.gender}
-                     religion={profile.religion}
-                     socialLinks={profile.socialLinks}
                      gender={userInfo.sex}
                      religion={userInfo.religion}
                      socialLinks={userInfo.soc_media}
