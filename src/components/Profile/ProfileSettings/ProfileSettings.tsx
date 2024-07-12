@@ -84,14 +84,14 @@ const ProfileSettings: React.FC = () => {
 
   const handleSave = async () => {
     const updatedProfile = {
-      first_name: profile.name,
-      about: profile.about,
-      photo_url: profile.photos[0],
-      date_of_birth: birthday,
-      sex: profile.gender,
-      religion: profile.religion,
-      hobby: profile.interests,
-      soc_media: profile.socialLinks,
+      first_name: profile.name || '',
+      about: profile.about || '',
+      photo_url: profile.photos[0] || '',
+      date_of_birth: birthday || '',
+      sex: profile.gender || '',
+      religion: profile.religion || '',
+      hobby: profile.interests || '',
+      soc_media: profile.socialLinks || [],
     };
 
     try {
