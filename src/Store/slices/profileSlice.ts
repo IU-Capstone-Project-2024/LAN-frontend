@@ -1,14 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { CoLifePreferences } from '@/Types/types';
 
-interface CoLifePreferences {
-  nightOwl: number;
-  cleanliness: number;
-  noiseLevel: number;
-  alcohol: number;
-  smoking: number;
-}
-
-interface ProfileState {
+export interface ProfileState {
   photos: string[];
   name: string;
   age: number;
@@ -31,11 +24,11 @@ const initialState: ProfileState = {
   about: '',
   interests: [],
   coLife: {
-    nightOwl: 0,
-    cleanliness: 0,
-    noiseLevel: 0,
-    alcohol: 0,
-    smoking: 0,
+    nightOwl: { name: 'nightOwl', value: 0 },
+    cleanliness: { name: 'cleanliness', value: 0 },
+    noiseLevel: { name: 'noiseLevel', value: 0 },
+    alcohol: { name: 'alcohol', value: 0 },
+    smoking: { name: 'smoking', value: 0 },
   },
   socialLinks: [],
   showModal: false,
@@ -67,8 +60,8 @@ const profileSlice = createSlice({
     setInterests(state, action: PayloadAction<string[]>) {
       state.interests = action.payload;
     },
-    setCoLife(state, action: PayloadAction<CoLifePreferences>) {
-      state.coLife = action.payload;
+    setCoLife: (state, action: PayloadAction<Partial<CoLifePreferences>>) => {
+      state.coLife = { ...state.coLife, ...action.payload };
     },
     setSocialLinks(state, action: PayloadAction<string[]>) {
       state.socialLinks = action.payload;

@@ -9,6 +9,7 @@ import filterReducer from './slices/filterSlice';
 import birthdayReducer from './slices/birthdaySlice';
 import authReducer from './slices/authSlice';
 import { profileApi } from './api/profileApi';
+import { metricsApi } from './api/metricsApi';
 
 export const store = configureStore({
   reducer: {
@@ -21,9 +22,10 @@ export const store = configureStore({
     auth: authReducer,
     [authApi.reducerPath]: authApi.reducer,
     [profileApi.reducerPath]: profileApi.reducer,
+    [metricsApi.reducerPath]: metricsApi.reducer,
   },
   middleware: (getDefaultMiddleware) =>
-      getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware),
+      getDefaultMiddleware().concat(authApi.middleware, profileApi.middleware, metricsApi.middleware),
 });
 
 setupListeners(store.dispatch);

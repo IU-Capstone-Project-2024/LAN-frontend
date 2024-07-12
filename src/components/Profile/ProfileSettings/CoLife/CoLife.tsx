@@ -1,50 +1,74 @@
-import { ChangeEvent, FC } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { setCoLife } from '@/Store/slices/profileSlice';
 import { RootState } from '@/Store/store';
+import { setCoLife } from '@/Store/slices/profileSlice';
+import { useAddMetricMutation, useUpdateMetricMutation } from '@/Store/api/metricsApi';
 import styles from '@/Styles/Profile/ProfileSettings/coLifeSettings.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
+import { CoLifePreferences } from '@/Types/types';
 
 interface CoLifeProps {
   title?: string;
 }
 
-const CoLifeSettings: FC<CoLifeProps> = ({title}) => {
+const CoLifeSettings: React.FC<CoLifeProps> = ({ title }) => {
   const dispatch = useDispatch();
   const coLifeSettings = useSelector((state: RootState) => state.profile.coLife);
+  const [addMetric] = useAddMetricMutation();
+  const [updateMetric] = useUpdateMetricMutation();
 
-  const handleCoLifeChange = (key: string, value: any) => {
-    dispatch(setCoLife({ ...coLifeSettings, [key]: value }));
+  useEffect(() => {
+    Object.keys(coLifeSettings).forEach(async (key) => {
+      const metric = coLifeSettings[key as keyof CoLifePreferences];
+      try {
+        await addMetric(metric).unwrap();
+      } catch (error) {
+        console.error('Failed to add metric:', error);
+      }
+    });
+  }, [coLifeSettings, addMetric, dispatch]);
+
+  const handleCoLifeChange = async (key: keyof CoLifePreferences, value: number) => {
+    const metric = coLifeSettings[key];
+    const updatedMetric = { ...metric, value };
+
+    dispatch(setCoLife({ [key]: updatedMetric }));
+
+    try {
+      await updateMetric(updatedMetric).unwrap();
+    } catch (error) {
+      console.error('Failed to save metric:', error);
+    }
   };
 
   return (
     <div className={styles['co-life']}>
       <label className={styles.title}>{title}</label>
       <RangeSlider
-        value={coLifeSettings.nightOwl}
+        value={coLifeSettings.nightOwl.value}
         leftLabel={'Сова'}
         rightLabel={'Жаворонок'}
-        onChange={(e) => handleCoLifeChange('nightOwl', Number(e.target.value))}/>
+        onChange={(e) => handleCoLifeChange('nightOwl', Number(e.target.value))} />
       <RangeSlider
-          value={coLifeSettings.cleanliness}
-          leftLabel={'Чистота важна'}
-          rightLabel={'Чистота не так важна'}
-          onChange={(e) => handleCoLifeChange('cleanliness', Number(e.target.value))}/>
+        value={coLifeSettings.cleanliness.value}
+        leftLabel={'Чистота важна'}
+        rightLabel={'Чистота не так важна'}
+        onChange={(e) => handleCoLifeChange('cleanliness', Number(e.target.value))} />
       <RangeSlider
-          value={coLifeSettings.noiseLevel}
-          leftLabel={'Люболю тишину и покой'}
-          rightLabel={'Люблю шум и компанию'}
-          onChange={(e) => handleCoLifeChange('noiseLevel', Number(e.target.value))}/>
+        value={coLifeSettings.noiseLevel.value}
+        leftLabel={'Люблю тишину и покой'}
+        rightLabel={'Люблю шум и компанию'}
+        onChange={(e) => handleCoLifeChange('noiseLevel', Number(e.target.value))} />
       <RangeSlider
-          value={coLifeSettings.alcohol}
-          leftLabel={'Пью алкоголь'}
-          rightLabel={'Не пью'}
-          onChange={(e) => handleCoLifeChange('alcohol', Number(e.target.value))}/>
+        value={coLifeSettings.alcohol.value}
+        leftLabel={'Пью алкоголь'}
+        rightLabel={'Не пью'}
+        onChange={(e) => handleCoLifeChange('alcohol', Number(e.target.value))} />
       <RangeSlider
-          value={coLifeSettings.smoking}
-          leftLabel={'Курю'}
-          rightLabel={'Не курю'}
-          onChange={(e) => handleCoLifeChange('smoking', Number(e.target.value))}/>
+        value={coLifeSettings.smoking.value}
+        leftLabel={'Курю'}
+        rightLabel={'Не курю'}
+        onChange={(e) => handleCoLifeChange('smoking', Number(e.target.value))} />
     </div>
   );
 };

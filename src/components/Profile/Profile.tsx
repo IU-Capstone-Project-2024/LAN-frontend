@@ -21,20 +21,14 @@ const Profile: FC = () => {
   useEffect(() => {
     if (userInfo) {
       const profileData = {
-        photos: userInfo.photos || [],
+        photos: userInfo.photos,
         name: userInfo.first_name,
         age: calculateAge(userInfo.date_of_birth),
         gender: userInfo.sex,
         religion: userInfo.religion,
         about: userInfo.about,
         interests: userInfo.hobby,
-        coLife: {
-          nightOwl: userInfo.nightOwl,
-          cleanliness: userInfo.cleanliness,
-          noiseLevel: userInfo.noiseLevel,
-          alcohol: userInfo.alcohol,
-          smoking: userInfo.smoking,
-        },
+        coLife: userInfo.metrics,
         socialLinks: userInfo.soc_media,
         showModal: false,
         modalPhoto: null,
@@ -92,7 +86,7 @@ const Profile: FC = () => {
       <ProfileInfo 
         screenWidth={screenWidth}
         truncateLink={truncateLink}
-        coLife={profile.coLife}
+        coLife={userInfo.metrics}
         about={profile.about}
         interests={profile.interests}
         name={profile.name}

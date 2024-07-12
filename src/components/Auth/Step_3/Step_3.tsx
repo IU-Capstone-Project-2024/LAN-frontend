@@ -8,12 +8,14 @@ import CoLifeSettings from "@/components/Profile/ProfileSettings/CoLife/CoLife";
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Store/store";
 import { setInterests, setCoLife, setName, setPhotos, setGender, setReligion, setAbout, setSocialLinks } from "@/Store/slices/profileSlice";
+import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
 
 const Step3: FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     const savedProfileStep3 = JSON.parse(localStorage.getItem('profileStep3') || '{}');
@@ -52,11 +54,21 @@ const Step3: FC = () => {
   }, [profile.interests, profile.coLife, isInitialized]);
 
   const nextStep = () => {
-    localStorage.removeItem('profileStep1');
-    localStorage.removeItem('profileStep2');
-    localStorage.removeItem('profileStep3');
-    localStorage.removeItem('currentStep');
+    const updatedProfile = {
+      hobby: profile.interests,
+      metrics: profile.coLife
+    };
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      localStorage.removeItem('profileStep1');
+      localStorage.removeItem('profileStep2');
+      localStorage.removeItem('profileStep3');
+      localStorage.removeItem('currentStep');
     router.push('/profile');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
+    
   };
 
   const prevStep = () => {

@@ -8,12 +8,14 @@ import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/Social
 import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Store/store";
 import { setAbout, setSocialLinks } from "@/Store/slices/profileSlice";
+import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
 
 const Step2: FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     const savedProfileStep2 = JSON.parse(localStorage.getItem('profileStep2') || '{}');
@@ -38,7 +40,16 @@ const Step2: FC = () => {
   }, [profile, isInitialized]);
 
   const nextStep = () => {
-    router.push('/auth/step_3');
+    const updatedProfile = {
+      about: profile.about,
+      soc_media: profile.socialLinks
+    };
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      router.push('/auth/step_3');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
   };
 
   const prevStep = () => {
