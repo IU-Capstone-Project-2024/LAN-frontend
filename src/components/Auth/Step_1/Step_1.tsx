@@ -20,7 +20,6 @@ import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGende
 import { setBirthday } from '@/Store/slices/birthdaySlice';
 import TelegramApp from '@/components/Telegram/Telegram';
 import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
-import { Photo } from '@/Types/types';
 
 const Step1: React.FC = () => {
   const router = useRouter();
@@ -60,11 +59,11 @@ const Step1: React.FC = () => {
     }
   }, [profile, isInitialized, birthday]);
 
-  const handlePhotoAdd = (photo: Photo) => {
+  const handlePhotoAdd = (photo: string) => {
     dispatch(setPhotos([...profile.photos, photo]));
   };
 
-  const handlePhotoClick = (photo: Photo) => {
+  const handlePhotoClick = (photo: string) => {
     dispatch(setModalPhoto(photo));
     dispatch(setShowModal(true));
   };
@@ -76,7 +75,7 @@ const Step1: React.FC = () => {
   const nextStep = () => {
     const updatedProfile = {
       first_name: profile.name,
-      photo_url: profile.photos,
+      photo_url: profile.photos[0],
       date_of_birth: birthday,
       sex: profile.gender,
       religion: profile.religion,
@@ -110,8 +109,8 @@ const Step1: React.FC = () => {
     <div className={styles.container}>
       <TelegramApp/>
       <h1>Создание профиля (1/3)</h1>
-      <div className={styles.UploadPhoto}>
-        <span className={styles.span1}>Добавьте фото</span>
+      <div className={styles["UploadPhoto"]}>
+        <span className={styles["span1"]}>Добавьте фото</span>
         <UploadPhoto
           photos={profile.photos}
           onPhotoAdd={handlePhotoAdd}
@@ -122,22 +121,22 @@ const Step1: React.FC = () => {
         />
       </div>
       <ModalPhoto show={profile.showModal} />
-      <div className={styles.Name}>
-        <span className={styles.span}>Как вас зовут?</span>
+      <div className={styles["Name"]}>
+        <span className={styles["span"]}>Как вас зовут?</span>
         <input type="text" placeholder="Ваше имя" name="name" value={profile.name} onChange={handleNameChange} />
       </div>
       <SelectSex selectedGender={selectedGender} safeGender={handleSelectGender} title={'Ваш пол:'} options={[
-        { value: '1', label: 'Мужчина' },
-        { value: '2', label: 'Женщина' }
-      ]} />
+    { value: '1', label: 'Мужчина' },
+    { value: '2', label: 'Женщина' }
+  ]} />
       <div className={styles.Birthday}>
         <BirthdayInput title='Дата рождения:' />
       </div>
-      <div className={styles.Religion}>
-        <span className={styles.span}>Ваша религия<p>(необязательно)</p></span>
+      <div className={styles["Religion"]}>
+        <span className={styles["span"]}>Ваша религия<p>(необязательно)</p></span>
         <input type="text" placeholder="Атеист" name="religion" value={profile.religion} onChange={handleReligionChange} />
       </div>
-      <button className={styles.button} onClick={nextStep}>Далее</button>
+      <button className={styles["button"]} onClick={nextStep}>Далее</button>
     </div>
   );
 };

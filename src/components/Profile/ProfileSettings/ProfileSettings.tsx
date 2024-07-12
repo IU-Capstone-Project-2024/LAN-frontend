@@ -22,7 +22,6 @@ import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
-import { Photo } from '@/Types/types';
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
@@ -68,11 +67,11 @@ const ProfileSettings: React.FC = () => {
     router.push('/profile');
   };
 
-  const handlePhotoAdd = (photo: Photo) => {
+  const handlePhotoAdd = (photo: string) => {
     dispatch(setPhotos([...profile.photos, photo]));
   };
 
-  const handlePhotoClick = (photo: Photo) => {
+  const handlePhotoClick = (photo: string) => {
     dispatch(setModalPhoto(photo));
     dispatch(setShowModal(true));
   };

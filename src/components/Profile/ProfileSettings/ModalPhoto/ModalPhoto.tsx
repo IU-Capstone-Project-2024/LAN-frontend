@@ -23,8 +23,6 @@ const ModalPhoto: FC<ModalProps> = ({show}) => {
     return null;
   }
 
-  
-
   const handleSetMainPhoto = () => {
     if (profile.modalPhoto) {
       dispatch(setMainPhoto(profile.modalPhoto));
@@ -46,7 +44,7 @@ const ModalPhoto: FC<ModalProps> = ({show}) => {
     dispatch(setModalPhoto(null));
   };
 
-  const isMainPhoto = profile.photos.length > 0 && profile.photos[0].id === profile.modalPhoto?.id;
+  const isMainPhoto = profile.photos[0] === profile.modalPhoto;
 
   return (
       <Modal

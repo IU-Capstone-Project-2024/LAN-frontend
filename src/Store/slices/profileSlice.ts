@@ -1,5 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { Photo } from '@/Types/types';
 
 interface CoLifePreferences {
   nightOwl: number;
@@ -10,7 +9,7 @@ interface CoLifePreferences {
 }
 
 interface ProfileState {
-  photos: Photo[];
+  photos: string[];
   name: string;
   age: number;
   gender: string;
@@ -20,7 +19,7 @@ interface ProfileState {
   coLife: CoLifePreferences;
   socialLinks: string[];
   showModal: boolean;
-  modalPhoto: Photo | null;
+  modalPhoto: string | null;
 }
 
 const initialState: ProfileState = {
@@ -83,29 +82,26 @@ const profileSlice = createSlice({
     updateSocialLink(state, action: PayloadAction<{ index: number, link: string }>) {
       state.socialLinks[action.payload.index] = action.payload.link;
     },
-    setPhotos(state, action: PayloadAction<Photo[]>) {
+    setPhotos(state, action: PayloadAction<string[]>) {
       state.photos = action.payload;
     },
-    addPhoto(state, action: PayloadAction<Photo>) {
+    addPhoto(state, action: PayloadAction<string>) {
       if (state.photos.length < 3) {
         state.photos.push(action.payload);
       }
     },
+    removePhoto(state, action: PayloadAction<string>) {
+      state.photos = state.photos.filter(photo => photo !== action.payload);
+    },
+    setMainPhoto(state, action: PayloadAction<string>) {
+      state.photos = state.photos.filter(photo => photo !== action.payload);
+      state.photos.unshift(action.payload);
+    },
     setShowModal(state, action: PayloadAction<boolean>) {
       state.showModal = action.payload;
     },
-    setModalPhoto(state, action: PayloadAction<Photo | null>) {
+    setModalPhoto(state, action: PayloadAction<string | null>) {
       state.modalPhoto = action.payload;
-    },
-    setMainPhoto(state, action: PayloadAction<Photo>) {
-      const index = state.photos.findIndex(photo => photo.id === action.payload.id);
-      if (index > -1) {
-        const [mainPhoto] = state.photos.splice(index, 1);
-        state.photos.unshift(mainPhoto);
-      }
-    },
-    removePhoto(state, action: PayloadAction<Photo>) {
-      state.photos = state.photos.filter(photo => photo.id !== action.payload.id);
     },
   },
 });
