@@ -44,12 +44,37 @@ const UploadPhoto: FC<UploadPhotoProps> = ({
     setCropData(cropper?.getCroppedCanvas().toDataURL() || '');
   };
 
-  const handleSavePhoto = () => {
+  const uploadImageToImgur = async (base64Image: string) => {
+    const response = await fetch('https://api.imgur.com/3/image', {
+      method: 'POST',
+      headers: {
+        Authorization: 'Client-ID ${process.env.CLIENT_ID}',
+        'Content-Type': 'application/json'
+      },
+      body: JSON.stringify({
+        image: base64Image.split(',')[1],
+        type: 'base64'
+      })
+    });
+
+    return response.json();
+  };
+
+  const handleSavePhoto = async () => {
     if (cropData) {
-      onPhotoAdd(cropData);
-      setImage('');
-      setCropData('');
-      onModalClose();
+      try {
+        const response = await uploadImageToImgur(cropData);
+        if (response.success) {
+          onPhotoAdd(response.data.link);
+          setImage('');
+          setCropData('');
+          onModalClose();
+        } else {
+          console.error('Failed to upload image', response.data.error);
+        }
+      } catch (error) {
+        console.error('Failed to upload image', error);
+      }
     }
   };
 

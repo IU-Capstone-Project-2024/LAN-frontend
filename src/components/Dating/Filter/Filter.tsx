@@ -35,7 +35,7 @@ const Filter: FC = () => {
         <h1>Фильтры</h1>
         <CategoryFilter />
         <AgeFilter />
-        <SelectGender title="Пол" options={["Мужской", "Женский", "Любой"]} safeGender={handleSelectGender} selectedGender={selectedGender}/>
+        <SelectGender title="Пол" options={['Мужской', 'Женский', 'Любой']} safeGender={handleSelectGender} selectedGender={selectedGender}/>
         <InterestsFilter />
         <CoLifeFilter />
         <div className={styles['button-group']}>

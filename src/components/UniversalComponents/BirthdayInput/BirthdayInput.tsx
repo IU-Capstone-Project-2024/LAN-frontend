@@ -6,6 +6,7 @@ import { RootState } from '@/Store/store';
 import styles from '@/Styles/Universal/BirthdayInput.module.scss';
 import { isValidDate } from "@/utils/validateDate";
 
+
 interface BirthdayInputProps {
   title?: string;
 }

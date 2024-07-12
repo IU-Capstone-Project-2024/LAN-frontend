@@ -1,15 +1,25 @@
-// src/components/SettingsPage.tsx
 "use client";
 
 import React from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { RootState } from "@/Store/store";
+import { clearToken } from '@/Store/slices/authSlice';
+import { useRouter } from 'next/navigation';
 import styles from '../../Styles/SettingsPage/settingsPage.module.scss';
 import Image from "next/image";
 import Link from 'next/link';
 
 const SettingsPage = () => {
   const profile = useSelector((state: RootState) => state.profile);
+  const router = useRouter();
+  const dispatch = useDispatch();
+  const token = useSelector((state: RootState) => state.auth.token);
+  
+  const handleLogout = () => {
+    localStorage.removeItem('token');
+    dispatch(clearToken());
+    router.push('/auth/step_1');
+  };
 
   return (
     <div className={styles.container}>
@@ -41,6 +51,9 @@ const SettingsPage = () => {
         <li>
           <span className={styles.menuText}>Сообщить о проблеме</span>
           <div className={styles.arrow}></div>
+        </li>
+        <li>
+          <button onClick={handleLogout}>Выйти</button>
         </li>
       </ul>
     </div>

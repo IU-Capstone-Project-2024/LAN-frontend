@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import styles from '@/Styles/Profile/ProfileSettings/profileSettings.module.scss';
@@ -21,15 +21,25 @@ import Interests from "@/components/Profile/ProfileSettings/Interests/Interests"
 import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
-import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
+import { useGetUserInfoQuery, useUpdateUserInfoMutation } from '@/Store/api/profileApi';
+import { setUserInfo } from '@/Store/slices/birthdaySlice';
+import SelectGender from '@/components/UniversalComponents/SelectGender/SelectGender';
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
+  const birthday = useSelector((state: RootState) => state.birthday.date);  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const selectedGender = useSelector((state: RootState) => state.profile.gender);
+  const { data: userInfo } = useGetUserInfoQuery({});
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(setUserInfo(userInfo));
+    }
+  }, [userInfo, dispatch]);
 
   const [profileState, setProfileState] = useState({
     name: profile.name,
@@ -64,7 +74,24 @@ const ProfileSettings: React.FC = () => {
   };
 
   const handleSave = () => {
-    router.push('/profile');
+    const updatedProfile = {
+      first_name: profile.name,
+      about: profile.about,
+      photo_url: profile.photos[0],
+      date_of_birth: birthday,
+      sex: profile.gender,
+      religion: profile.religion,
+      hobby: profile.interests,
+      soc_media: profile.socialLinks,
+    };
+
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      router.push('/profile');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
+    
   };
 
   const handlePhotoAdd = (photo: string) => {
@@ -110,6 +137,7 @@ const ProfileSettings: React.FC = () => {
         </div>
       </div>
       <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
+      <SelectGender safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
       <About updateAbout={updateAbout} title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>

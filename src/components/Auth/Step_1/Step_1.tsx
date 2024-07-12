@@ -18,6 +18,8 @@ import ModalPhoto from "@/components/Profile/ProfileSettings/ModalPhoto/ModalPho
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 import { setBirthday } from '@/Store/slices/birthdaySlice';
+import TelegramApp from '@/components/Telegram/Telegram';
+import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
 
 const Step1: React.FC = () => {
   const router = useRouter();
@@ -27,6 +29,7 @@ const Step1: React.FC = () => {
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const selectedGender = useSelector((state: RootState) => state.profile.gender);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
   useEffect(() => {
     const savedProfileStep1 = JSON.parse(localStorage.getItem('profileStep1') || '{}');
@@ -70,7 +73,20 @@ const Step1: React.FC = () => {
   };
 
   const nextStep = () => {
-    router.push('/auth/step_2');
+    const updatedProfile = {
+      first_name: profile.name,
+      photo_url: profile.photos[0],
+      date_of_birth: birthday,
+      sex: profile.gender,
+      religion: profile.religion,
+    };
+
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      router.push('/auth/step_2');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
   };
 
   const handleModalClose = () => {
@@ -91,6 +107,7 @@ const Step1: React.FC = () => {
 
   return (
     <div className={styles.container}>
+      <TelegramApp/>
       <h1>Создание профиля (1/3)</h1>
       <div className={styles["UploadPhoto"]}>
         <span className={styles["span1"]}>Добавьте фото</span>
