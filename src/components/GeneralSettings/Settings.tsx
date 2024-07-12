@@ -29,7 +29,9 @@ const SettingsPage = () => {
         <h1 className={styles.headerTitle}>Настройка приложения</h1>
       </Link>
       <div className={styles.profile}>
-        <img src={profile.photos[0]} alt={profile.name} className={styles.profileImage} />
+        {profile.photos && profile.photos.length > 0 && (
+            <img src={profile.photos[0].src} alt={profile.name} className={styles.profileImage} />
+        )}
         <div className={styles.profileName}>{profile.name}</div>
       </div>
       <ul className={styles.menu}>

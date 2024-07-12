@@ -91,21 +91,21 @@ const profileSlice = createSlice({
         state.photos.push(action.payload);
       }
     },
-    removePhoto(state, action: PayloadAction<string>) {
-      state.photos = state.photos.filter(photo => photo.src !== action.payload);
-    },
-    setMainPhoto(state, action: PayloadAction<string>) {
-      const mainPhoto = state.photos.find(photo => photo.src === action.payload);
-      if (mainPhoto) {
-        state.photos = state.photos.filter(photo => photo.src !== action.payload);
-        state.photos.unshift(mainPhoto);
-      }
-    },
     setShowModal(state, action: PayloadAction<boolean>) {
       state.showModal = action.payload;
     },
     setModalPhoto(state, action: PayloadAction<Photo | null>) {
       state.modalPhoto = action.payload;
+    },
+    setMainPhoto(state, action: PayloadAction<Photo>) {
+      const index = state.photos.findIndex(photo => photo.id === action.payload.id);
+      if (index > -1) {
+        const [mainPhoto] = state.photos.splice(index, 1);
+        state.photos.unshift(mainPhoto);
+      }
+    },
+    removePhoto(state, action: PayloadAction<Photo>) {
+      state.photos = state.photos.filter(photo => photo.id !== action.payload.id);
     },
   },
 });
