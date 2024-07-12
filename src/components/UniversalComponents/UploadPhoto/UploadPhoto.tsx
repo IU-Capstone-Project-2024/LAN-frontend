@@ -81,7 +81,7 @@ const UploadPhoto: FC<UploadPhotoProps> = ({
             <img src={photo.src} alt={`Фото ${index + 1}`} />
             <div className={styles.photo_info}>
               <span>{photo.name}</span>
-              <span>{(photo.size / 1024).toFixed(2)} KB</span>
+              <span>{photo.src}</span>
             </div>
           </div>
         ))}

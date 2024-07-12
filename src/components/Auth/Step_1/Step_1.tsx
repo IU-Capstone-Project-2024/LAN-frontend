@@ -76,7 +76,7 @@ const Step1: React.FC = () => {
   const nextStep = () => {
     const updatedProfile = {
       first_name: profile.name,
-      photo_url: profile.photos[0]?.src || '',
+      photo_url: profile.photos,
       date_of_birth: birthday,
       sex: profile.gender,
       religion: profile.religion,
