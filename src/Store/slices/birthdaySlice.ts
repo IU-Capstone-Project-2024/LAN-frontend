@@ -1,7 +1,4 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
-import { useGetUserInfoQuery } from '../api/profileApi';
-
-const { data: userInfo } = useGetUserInfoQuery({});
 
 interface BirthdayState {
   date: string;
@@ -9,7 +6,7 @@ interface BirthdayState {
 }
 
 const initialState: BirthdayState = {
-  date: userInfo.date_of_birth,
+  date: '',
   age: undefined,
 };
 
@@ -35,8 +32,12 @@ const birthdaySlice = createSlice({
       state.date = action.payload;
       state.age = calculateAge(action.payload);
     },
+    setUserInfo(state, action: PayloadAction<{ date_of_birth: string }>) {
+      state.date = action.payload.date_of_birth;
+      state.age = calculateAge(action.payload.date_of_birth);
+    },
   },
 });
 
-export const { setBirthday } = birthdaySlice.actions;
+export const { setBirthday, setUserInfo } = birthdaySlice.actions;
 export default birthdaySlice.reducer;

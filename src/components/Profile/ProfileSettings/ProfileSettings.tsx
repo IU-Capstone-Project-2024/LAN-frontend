@@ -1,6 +1,6 @@
 "use client"
 
-import React, { useState, ChangeEvent } from 'react';
+import React, { useState, ChangeEvent, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useRouter } from 'next/navigation';
 import styles from '@/Styles/Profile/ProfileSettings/profileSettings.module.scss';
@@ -23,6 +23,7 @@ import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/Birthd
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
 import { useGetUserInfoQuery, useUpdateUserInfoMutation } from '@/Store/api/profileApi';
+import { setUserInfo } from '@/Store/slices/birthdaySlice';
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
@@ -34,6 +35,11 @@ const ProfileSettings: React.FC = () => {
   const { data: userInfo } = useGetUserInfoQuery({});
   const [updateUserInfo] = useUpdateUserInfoMutation();
 
+  useEffect(() => {
+    if (userInfo) {
+      dispatch(setUserInfo(userInfo));
+    }
+  }, [userInfo, dispatch]);
 
   const [profileState, setProfileState] = useState({
     name: profile.name,
