@@ -12,7 +12,7 @@ import { useGetUserInfoQuery } from '@/Store/api/profileApi';
 
 const Profile: FC = () => {
   const router = useRouter();
-  const [screenWidth, setScreenWidth] = useState<number>(window.innerWidth);
+  const [screenWidth, setScreenWidth] = useState<number>(0);
   const profile = useSelector((state: RootState) => state.profile);
   const birthday = useSelector((state: RootState) => state.birthday);
   const { data: userInfo, refetch } = useGetUserInfoQuery({});
