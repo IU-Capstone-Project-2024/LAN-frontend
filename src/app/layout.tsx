@@ -14,7 +14,6 @@ export default function RootLayout({
                                    }: Readonly<{
   children: React.ReactNode;
 }>) {
-
   useEffect(() => {
     try {
       throw new Error("Test error");
@@ -22,6 +21,7 @@ export default function RootLayout({
       console.error(e);
     }
   }, []);
+
 
   return (
       <html lang="en">
@@ -31,6 +31,7 @@ export default function RootLayout({
       </head>
       <Provider store={store}>
         <body className={montserrat.className}>
+        <Telegram/>
         <div>
           {children}
         </div>

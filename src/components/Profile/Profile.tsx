@@ -50,6 +50,9 @@ const Profile: FC = () => {
                      interests={userInfo.hobby}
                      name={userInfo.first_name}
                      age={birthday.age}
+                     gender={profile.gender}
+                     religion={profile.religion}
+                     socialLinks={profile.socialLinks}
                      gender={userInfo.sex}
                      religion={userInfo.religion}
                      socialLinks={userInfo.soc_media}

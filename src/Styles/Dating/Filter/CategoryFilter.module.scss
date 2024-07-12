@@ -1,37 +1,86 @@
 .category-group {
   position: relative;
-  background-color: #292929;
-  padding: 10px;
+  padding: 8px;
   border-radius: 10px;
-  border: 1px solid #444;
+  border: 1px solid #1C1D21;
   color: #aaa;
   cursor: pointer;
   width: 90%;
+  border-radius: 20px;
+  .span {
+    margin-right: -30px;
+  }
+
+  
+
+  .category-option {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+    
+    
+  
+    input[type="radio"] {
+      appearance: none;
+      margin: 0;
+      width: 20px;
+      height: 20px;
+      background-color: transparent;
+      border: 2px solid #555;
+      border-radius: 50%;
+      position: relative;
+  
+      &:focus {
+        outline: none;
+      }
+  
+      &::before {
+        content: '';
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        background: transparent;
+        transition: background 0.3s ease;
+      }
+      
+      &:checked::before {
+        background: #28a745;
+
+
+      }
+    }
+  
+
+  }
+  
+  
 
   .header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
+    margin-bottom: 8px;
     font-weight: bold;
     color: #888;
+    
+    
 
     .icon {
-      font-size: 16px;
-      color: #888;
-    }
+      width: 24px; 
+      height: 24px;
+      margin-right: 16px;
+  }
+
+
   }
 
   .category-options {
     display: flex;
     flex-direction: column;
-    background-color: #292929;
-    position: absolute;
-    top: 100%;
-    left: 0;
-    right: 0;
-    z-index: 10;
-    border: 1px solid #444;
     border-radius: 10px;
     padding: 10px;
     margin-top: 5px;
@@ -46,7 +95,7 @@
 
       input[type='radio'] {
         margin-right: 10px;
-        accent-color: #28a745; /* Зеленый цвет для активного состояния */
+        accent-color: #28a745; 
       }
 
       &:last-child {

@@ -36,6 +36,7 @@ const CategoryFilter: FC = () => {
       <div className={styles['category-group']} ref={dropdownRef}>
         <div className={styles['header']} onClick={toggleDropdown}>
           <span>{ category ||'Выбор категории'}</span>
+          <img src="/filter_gray.svg" className={styles.icon} alt="Фильтр"/>
         </div>
         {isOpen && (
             <div className={styles['category-options']}>
