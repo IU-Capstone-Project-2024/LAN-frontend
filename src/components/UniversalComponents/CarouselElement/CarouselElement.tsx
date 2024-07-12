@@ -3,16 +3,16 @@ import { Carousel } from 'react-responsive-carousel';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import styles from "@/Styles/Universal/Carousel.module.scss";
 import Image from "next/image";
-import '@/Styles/Universal/castomCarousel/castomCarousel.css'
+import '@/Styles/Universal/castomCarousel/castomCarousel.css';
 
 interface CarouselElementProps {
-  photos: string[] | null;
+  photos: string[];
 }
 
 const CarouselElement: FC<CarouselElementProps> = ({ photos }) => {
   return (
     <>
-      {photos && photos.length > 0 ? (
+      {Array.isArray(photos) && photos.length > 0 ? (
         <Carousel showThumbs={false} showArrows={false} showStatus={false}>
           {photos.map((photo, index) => (
             <div key={index} className={styles['carousel-slide']}>
