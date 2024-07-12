@@ -6,7 +6,7 @@ import Image from "next/image";
 import '@/Styles/Universal/castomCarousel/castomCarousel.css';
 
 interface CarouselElementProps {
-  photos: string[];
+  photos: string[] | null;
 }
 
 const CarouselElement: FC<CarouselElementProps> = ({ photos }) => {
