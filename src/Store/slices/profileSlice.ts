@@ -1,4 +1,5 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { Photo } from '@/Types/types';
 
 interface CoLifePreferences {
   nightOwl: number;
@@ -9,7 +10,7 @@ interface CoLifePreferences {
 }
 
 interface ProfileState {
-  photos: string[];
+  photos: Photo[];
   name: string;
   age: number;
   gender: string;
@@ -19,7 +20,7 @@ interface ProfileState {
   coLife: CoLifePreferences;
   socialLinks: string[];
   showModal: boolean;
-  modalPhoto: string | null;
+  modalPhoto: Photo | null;
 }
 
 const initialState: ProfileState = {
@@ -82,25 +83,28 @@ const profileSlice = createSlice({
     updateSocialLink(state, action: PayloadAction<{ index: number, link: string }>) {
       state.socialLinks[action.payload.index] = action.payload.link;
     },
-    setPhotos(state, action: PayloadAction<string[]>) {
+    setPhotos(state, action: PayloadAction<Photo[]>) {
       state.photos = action.payload;
     },
-    addPhoto(state, action: PayloadAction<string>) {
+    addPhoto(state, action: PayloadAction<Photo>) {
       if (state.photos.length < 3) {
         state.photos.push(action.payload);
       }
     },
     removePhoto(state, action: PayloadAction<string>) {
-      state.photos = state.photos.filter(photo => photo !== action.payload);
+      state.photos = state.photos.filter(photo => photo.src !== action.payload);
     },
     setMainPhoto(state, action: PayloadAction<string>) {
-      state.photos = state.photos.filter(photo => photo !== action.payload);
-      state.photos.unshift(action.payload);
+      const mainPhoto = state.photos.find(photo => photo.src === action.payload);
+      if (mainPhoto) {
+        state.photos = state.photos.filter(photo => photo.src !== action.payload);
+        state.photos.unshift(mainPhoto);
+      }
     },
     setShowModal(state, action: PayloadAction<boolean>) {
       state.showModal = action.payload;
     },
-    setModalPhoto(state, action: PayloadAction<string | null>) {
+    setModalPhoto(state, action: PayloadAction<Photo | null>) {
       state.modalPhoto = action.payload;
     },
   },
