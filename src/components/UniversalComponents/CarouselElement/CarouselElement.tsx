@@ -12,7 +12,7 @@ interface CarouselElementProps {
 const CarouselElement: FC<CarouselElementProps> = ({ photos }) => {
   return (
     <>
-      {Array.isArray(photos) && photos.length > 0 ? (
+      {photos && Array.isArray(photos) && photos.length > 0 ? (
         <Carousel showThumbs={false} showArrows={false} showStatus={false}>
           {photos.map((photo, index) => (
             <div key={index} className={styles['carousel-slide']}>
