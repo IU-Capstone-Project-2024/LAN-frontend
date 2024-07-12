@@ -22,13 +22,17 @@ import About from "@/components/Profile/ProfileSettings/About/About";
 import BirthdayInput from "@/components/UniversalComponents/BirthdayInput/BirthdayInput";
 import SocialLinks from "@/components/Profile/ProfileSettings/SocialLinks/SocialLinks";
 import SelectSex from "@/components/UniversalComponents/SelectGender/SelectGender";
+import { useGetUserInfoQuery, useUpdateUserInfoMutation } from '@/Store/api/profileApi';
 
 const ProfileSettings: React.FC = () => {
   const router = useRouter();
   const dispatch = useDispatch();
   const profile = useSelector((state: RootState) => state.profile);
+  const birthday = useSelector((state: RootState) => state.birthday.date);  
   const [isModalOpen, setIsModalOpen] = useState<boolean>(false);
   const selectedGender = useSelector((state: RootState) => state.profile.gender);
+  const { data: userInfo } = useGetUserInfoQuery({});
+  const [updateUserInfo] = useUpdateUserInfoMutation();
 
 
   const [profileState, setProfileState] = useState({
@@ -64,7 +68,23 @@ const ProfileSettings: React.FC = () => {
   };
 
   const handleSave = () => {
-    router.push('/profile');
+    const updatedProfile = {
+      first_name: profile.name,
+      photo_url: profile.photos[0],
+      date_of_birth: birthday,
+      sex: profile.gender,
+      religion: profile.religion,
+      hobby: profile.interests,
+      soc_media: profile.socialLinks,
+    };
+
+    try {
+      updateUserInfo(updatedProfile).unwrap();
+      router.push('/profile');
+    } catch (error) {
+      console.error('Failed to update user info:', error);
+    }
+    
   };
 
   const handlePhotoAdd = (photo: string) => {
@@ -109,10 +129,7 @@ const ProfileSettings: React.FC = () => {
           <input type="text" name="religion" value={profileState.religion} onChange={handleInputChange} placeholder='Атеист' />
         </div>
       </div>
-      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={[
-    { value: '1', label: 'Мужчина' },
-    { value: '2', label: 'Женщина' }
-  ]}/>
+      <SelectSex safeGender={handleSelectGender} selectedGender={selectedGender} title={'Ваш пол:'} options={['Мужской', 'Женский']}/>
       <About updateAbout={updateAbout} title="О себе"></About>
       <Interests></Interests>
       <CoLifeSettings title="Co-Life"/>

@@ -1,4 +1,7 @@
 import { createSlice, PayloadAction } from '@reduxjs/toolkit';
+import { useGetUserInfoQuery } from '../api/profileApi';
+
+const { data: userInfo } = useGetUserInfoQuery({});
 
 interface BirthdayState {
   date: string;
@@ -6,7 +9,7 @@ interface BirthdayState {
 }
 
 const initialState: BirthdayState = {
-  date: '',
+  date: userInfo.date_of_birth,
   age: undefined,
 };
 
