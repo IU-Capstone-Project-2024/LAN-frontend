@@ -47,12 +47,12 @@ const Profile: FC = () => {
                      truncateLink={truncateLink}
                      coLife={profile.coLife}
                      about={userInfo.about}
-                     interests={userInfo.hobby}
+                     interests={userInfo.interests}
                      name={userInfo.first_name}
-                     age={birthday.age}
-                     gender={profile.gender}
+                     age={userInfo.date_of_birth}
+                     gender={userInfo.sex}
                      religion={userInfo.religion}
-                     socialLinks={userInfo.soc_media}
+                     socialLinks={userInfo.socialLinks}
         />
       </div>
   );
