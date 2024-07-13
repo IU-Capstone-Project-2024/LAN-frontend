@@ -5,8 +5,7 @@ import { setCoLife } from '@/Store/slices/profileSlice';
 import { useAddMetricMutation, useUpdateMetricMutation } from '@/Store/api/metricsApi';
 import styles from '@/Styles/Profile/ProfileSettings/coLifeSettings.module.scss';
 import RangeSlider from "@/components/UniversalComponents/RangeSlider/RangeSlider";
-import { CoLifePreferences, Metric } from '@/Types/types';
-import { useGetUserInfoQuery } from '@/Store/api/profileApi';
+import { CoLifePreferences } from '@/Types/types';
 
 interface CoLifeProps {
   title?: string;
@@ -17,28 +16,17 @@ const CoLifeSettings: React.FC<CoLifeProps> = ({ title }) => {
   const coLifeSettings = useSelector((state: RootState) => state.profile.coLife);
   const [addMetric] = useAddMetricMutation();
   const [updateMetric] = useUpdateMetricMutation();
-  const { data: userData, isSuccess } = useGetUserInfoQuery({});
 
   useEffect(() => {
-    if (isSuccess && userData) {
-      const existingMetrics = userData.metrics.map((metric: Metric) => metric.name);
-
-      Object.keys(coLifeSettings).forEach(async (key) => {
-        const metric = coLifeSettings[key as keyof CoLifePreferences];
-        const metricName = metric.name;
-
-        if (!existingMetrics.includes(metricName)) {
-          try {
-            await addMetric(metric).unwrap();
-          } catch (error) {
-            console.error('Failed to add metric:', error);
-          }
-        } else {
-          console.log(`Metric ${metricName} already exists.`);
-        }
-      });
-    }
-  }, [coLifeSettings, addMetric, dispatch, isSuccess, userData]);
+    Object.keys(coLifeSettings).forEach(async (key) => {
+      const metric = coLifeSettings[key as keyof CoLifePreferences];
+      try {
+        await addMetric(metric).unwrap();
+      } catch (error) {
+        console.error('Failed to add metric:', error);
+      }
+    });
+  }, [coLifeSettings, addMetric, dispatch]);
 
   const handleCoLifeChange = async (key: keyof CoLifePreferences, value: number) => {
     const metric = coLifeSettings[key];

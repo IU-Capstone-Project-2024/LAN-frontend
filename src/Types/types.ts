@@ -1,5 +1,5 @@
 
-export interface Metric {
+interface Metric {
     name: string;
     value: number;
 }
