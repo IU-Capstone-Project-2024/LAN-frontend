@@ -16,7 +16,7 @@ const Interests: FC = () => {
 
 
   const handleInterestClick = (interest: string) => {
-    let updatedInterests = [...profile.interests];
+    let updatedInterests = profile.interests ? [...profile.interests] : [];
     if (updatedInterests.includes(interest)) {
       updatedInterests = updatedInterests.filter((i) => i !== interest);
     } else {

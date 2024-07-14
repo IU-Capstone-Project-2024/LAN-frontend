@@ -48,7 +48,7 @@ const UploadPhoto: FC<UploadPhotoProps> = ({
     const response = await fetch('https://api.imgur.com/3/image', {
       method: 'POST',
       headers: {
-        Authorization: 'Client-ID 0f7a3a13dd4c364',
+        Authorization: `Client-ID ${process.env["CLIENT_ID"]}`,
         'Content-Type': 'application/json'
       },
       body: JSON.stringify({

@@ -76,7 +76,7 @@ const Profile: FC = () => {
     <div className={styles.profile}>
       <ProfileHeader 
         onAction={handleEditProfile}
-        photos={profile.photos}
+        photos={userInfo.photo_url}
         iconAlt="Настройки"
         iconSrc="/Settings_icon.svg"
         title="Профиль"
