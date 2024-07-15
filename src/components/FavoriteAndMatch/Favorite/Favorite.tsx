@@ -24,8 +24,10 @@ const Favorites: React.FC = () => {
     <div className={styles.favoritesContainer}>
       {favorites.map((favorite) => (
         <div key={favorite.id} className={styles.favoriteItem}>
-          <img src={favorite.image} alt={favorite.name} />
-          <p>{favorite.name}, {favorite.age}</p>
+          <img src={favorite.image} alt={favorite.name} className={styles.favoriteImage} />
+          <div className={styles.favoriteDetails}>
+            <p>{favorite.name}, {favorite.age}</p>
+          </div>
         </div>
       ))}
     </div>
