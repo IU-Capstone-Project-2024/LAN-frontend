@@ -8,7 +8,7 @@ export interface ProfileState {
   gender: string;
   religion: string;
   about: string;
-  interests: string[];
+  interests: string[] | null;
   coLife: CoLifePreferences;
   socialLinks: string[];
   showModal: boolean;
@@ -22,13 +22,13 @@ const initialState: ProfileState = {
   gender: '',
   religion: '',
   about: '',
-  interests: [],
+  interests: null,
   coLife: {
-    nightOwl: { name: 'nightOwl', value: 0 },
-    cleanliness: { name: 'cleanliness', value: 0 },
-    noiseLevel: { name: 'noiseLevel', value: 0 },
-    alcohol: { name: 'alcohol', value: 0 },
-    smoking: { name: 'smoking', value: 0 },
+    nightOwl: { id: 41, name: 'nightOwl', value: 0 },
+    cleanliness: { id: 42, name: 'cleanliness', value: 0 },
+    noiseLevel: { id: 43, name: 'noiseLevel', value: 0 },
+    alcohol: { id: 44, name: 'alcohol', value: 0 },
+    smoking: { id: 45, name: 'smoking', value: 0 },
   },
   socialLinks: [],
   showModal: false,
@@ -57,10 +57,10 @@ const profileSlice = createSlice({
     setAbout(state, action: PayloadAction<string>) {
       state.about = action.payload;
     },
-    setInterests(state, action: PayloadAction<string[]>) {
+    setInterests(state, action: PayloadAction<string[] | null>) {
       state.interests = action.payload;
     },
-    setCoLife: (state, action: PayloadAction<Partial<CoLifePreferences>>) => {
+    setCoLife: (state, action) => {
       state.coLife = { ...state.coLife, ...action.payload };
     },
     setSocialLinks(state, action: PayloadAction<string[]>) {
