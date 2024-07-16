@@ -1,0 +1,41 @@
+.interests-group {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    
+    .buttons-container {
+        display: flex;
+        gap: 20px;
+        margin-top: 15px;
+    }
+  
+    label {
+        align-self: flex-start;
+        padding-left: 3px;
+        font-size: 20px;
+      font-weight: 400;
+      color: #fff;
+    }
+
+  
+    button {
+        flex: 0 0 auto;
+        margin: 7.5px 0;
+        color: #8C8D92;
+        border: 2px solid #D5DBE9;
+        border-radius: 25px;
+        cursor: pointer;
+        padding: 7px 22px;
+        background: none;
+  
+        &.active {
+          border: 2px solid transparent;
+          background: linear-gradient(#2D3037, #2D3037) padding-box,
+          linear-gradient(#4AF11F, #7640EE) border-box;
+          color: #fff;
+        }
+  
+
+    }
+  }
+  

@@ -1,0 +1,210 @@
+.profile-settings {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  margin-top: 27px ;
+
+  .addButton {
+    background: no-repeat center center;
+    background-size: contain;
+    border: none;
+    width: 48px;
+    height: 48px;
+    cursor: pointer;
+    margin-top: 10px;
+    padding: 0;
+  }
+
+  h2{
+    font-size: 25px;
+    align-self: flex-start;
+    margin-left: 21px;
+  }
+
+  .gradient{
+    width: 100vw;
+    height: 482px;
+    background: linear-gradient(180deg, #000 0%, rgba(0, 0, 0, 0.00) 47.72%), lightgray 0.884px -19.281px / 98.664% 121.966% no-repeat;
+  }
+  label {
+    align-self: flex-start;
+  }
+
+  input,
+  textarea {
+    width: calc(100% - 40px);
+    margin: 10px 20px;
+  }
+}
+
+
+.inputContainer {
+  margin-bottom: 20px;
+  width: 99%;
+  display: flex;
+
+  label {
+    display: none;
+    font-size: 16px;
+    color: #333;
+    margin-bottom: 5px;
+    text-align: center;
+  }
+
+  input[type='text'] {
+    text-align: center;
+    padding: 10px;
+    font-size: 16px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #4caf50;
+    }
+
+    &::placeholder {
+      text-align: center;
+      color: #999;
+    }
+  }
+}
+.ageAndReligion {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.religionContainer{
+  margin-bottom: 20px;
+
+  .religion_label {
+    width: 40%
+  }
+}
+.ageContainer,
+.religionContainer {
+  display: flex;
+  margin-left: 25px;
+  
+  label {
+    font-size: 20px;
+    font-weight: 400;
+    color: #ffffff;
+    margin-top: 20px;
+    width: 120%;
+  }
+
+
+  input {
+    padding: 10px;
+    font-size: 14px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    text-align: center;
+    box-sizing: border-box;
+
+    &:focus {
+      border-color: #4caf50;
+      text-align: center;
+    }
+
+    &::placeholder {
+      text-align: center;
+      color: #999;
+    }
+  }
+}
+
+.save_button {
+  margin-top: 20px;
+  background: #4AF11F;
+  color: #2D3037;
+  padding: 10px 20px;
+  border: none;
+  border-radius: 25px;
+  cursor: pointer;
+  font-size: 16px;
+  font-weight: 500;
+  margin-bottom: 4%;
+
+  &:hover {
+    background-color: #45a049;
+  }
+}
+
+.label_soc_set {
+  display: flex;
+  flex-direction: column;
+  margin-top: 40px;
+  position: relative;
+  align-items: flex-start;
+
+  label {
+    display: flex;
+    font-size: 20px;
+    color: #FFFFFF;
+  }
+
+  .socialLinksContainer {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    width: 100%;
+    gap: 10px;
+  }
+
+  .social-link {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  .social-link input {
+    padding: 8px;
+    font-size: 16px;
+    border: 2px solid #D5DBE9;
+    border-radius: 25px;
+    outline: none;
+    width: 90%;
+    box-sizing: border-box;
+  }
+
+  .delete_button {
+    background: no-repeat center center;
+    background-size: contain;
+    width: 36px;
+    height: 36px;
+    border: none;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+
+  .delete_button:hover {
+    opacity: 0.8;
+  }
+
+  .addButton {
+    background: no-repeat center center;
+    background-size: contain;
+    border: none;
+    width: 32px;
+    height: 32px;
+    cursor: pointer;
+    margin-top: 10px;
+    align-self: center;
+
+    &:hover {
+      opacity: 0.8;
+    }
+  }
+}
+
+
+
+
+
+
