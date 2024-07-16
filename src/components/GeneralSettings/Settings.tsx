@@ -38,7 +38,6 @@ const SettingsPage = () => {
         <li>
           <span className={styles.menuText}>Тема приложения</span>
           <div className={styles.arrow}></div>
-          </Link>
         </li>
         <li>
           <span className={styles.menuText}>{t('notificationSettings')}</span>
