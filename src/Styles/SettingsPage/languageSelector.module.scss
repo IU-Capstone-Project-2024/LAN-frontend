@@ -1,0 +1,46 @@
+// src/components/GeneralSettings/languageSelector.module.scss
+.languageSelector {
+    padding: 20px;
+    border-radius: 10px;
+    width: 90vw;
+    max-width: 600px;
+    margin: 50px auto;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+    position: relative;
+}
+
+.languageOption {
+    padding: 10px;
+    margin: 10px 0;
+    border-radius: 15px;
+    cursor: pointer;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: relative;
+    border: 1px solid #8E94A2;
+    &::after {
+        content: "";
+        position: absolute;
+        right: -30px;
+        top: 43%;
+        transform: translateY(-50%);
+        width: 20px;
+        height: 20px;
+        border-radius: 50%;
+        border: 2px solid #4AF11F;
+    }
+}
+
+.languageOption.selected {
+    background-color: #4d4d4d;
+    border: none;
+    &::after {
+        background-color: #4AF11F; 
+        border: 2px solid #4AF11F;
+    }
+}
+.indicator {
+    display: none;
+}

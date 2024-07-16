@@ -1,31 +1,31 @@
 .container {
-    color: #fff; // White text
-    font-family: 'Arial', sans-serif; // Font family for text
+    color: #fff; 
+    font-family: 'Arial', sans-serif; 
     padding: 20px;
     height: 100vh;
     display: flex;
     flex-direction: column;
-    position: relative; // Required for absolute positioning within
+    position: relative; 
     gap: 18px;
   }
   
   .profile {
     display: flex;
-    flex-direction: column; // Changed to column for vertical layout
-    align-items: center; // Center align the items
-    margin-bottom: 20px; // Adjusted margin for better spacing
+    flex-direction: column; 
+    align-items: center; 
+    margin-bottom: 20px; 
   
     .profileImage {
       border-radius: 50%;
-      width: 80px; // Increased size for visibility
+      width: 80px; 
       height: 80px;
-      object-fit: cover; // Keeps the aspect ratio of the image
-      margin-bottom: 10px; // Space between image and name
-      border: 3px solid #fff; // Optional: white border around the image
+      object-fit: cover; 
+      margin-bottom: 10px; 
+      border: 3px solid #fff; 
     }
   
     .profileName {
-      font-size: 18px; // Increased font size
+      font-size: 18px; 
     }
   }
   
@@ -33,16 +33,16 @@
     list-style: none;
     padding: 0;
     margin: 0;
-    width: 100%; // Ensures the menu takes full container width
+    width: 100%; 
   
     li {
-      border: 1px solid #8E94A2; // Slightly lighter border for contrast
+      border: 1px solid #8E94A2; 
       color: #8E94A2;
       padding: 12px 20px;
-      border-radius: 15px; // Rounded corners for list items
-      margin-bottom: 10px; // Space between items
+      border-radius: 15px; 
+      margin-bottom: 10px; 
       display: flex;
-      justify-content: space-between; // Space between text and icon
+      justify-content: space-between; 
       align-items: center;
       cursor: pointer;
       gap: 18px;
@@ -52,13 +52,13 @@
       }
   
       .menuText {
-        flex-grow: 1; // Allows text to take up necessary space
+        flex-grow: 1; 
       }
   
       .arrow {
-        width: 12px; // Width of the arrow icon
-        height: 12px; // Height of the arrow icon
-        background-image: url('/arrow_icon.svg'); // Path to the right arrow icon
+        width: 12px; 
+        height: 12px; 
+        background-image: url('/arrow_icon.svg'); 
         background-size: cover;
         background-position: center;
         color: #8E94A2;
@@ -70,9 +70,27 @@
     display: flex;
     justify-content: left;
     align-items: center;
-    color: #fff; // Set the text color to white
-    font-size: 24px; // Increase font size
-    padding: 15px; // Add padding for better spacing
+    color: #fff; 
+    font-size: 24px; 
+    padding: 15px; 
     gap: 10px;
 
+}
+
+.noLinkStyle {
+  text-decoration: none;
+  color: inherit;
+  cursor: pointer;
+  &:hover {
+    text-decoration: none;
+  }
+}
+
+.menuLink {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%; 
+  text-decoration: none;
+  color: inherit; 
 }
