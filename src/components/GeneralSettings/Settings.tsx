@@ -36,8 +36,7 @@ const SettingsPage = () => {
       </div>
       <ul className={styles.menu}>
         <li>
-        <Link href="/settings/theme-selector" className={`${styles.menuLink} ${styles.noLinkStyle}`}>
-          <span className={styles.menuText}>{t('themeSettings')}</span>
+          <span className={styles.menuText}>Тема приложения</span>
           <div className={styles.arrow}></div>
           </Link>
         </li>
