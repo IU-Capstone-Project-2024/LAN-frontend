@@ -9,6 +9,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "@/Store/store";
 import { setInterests, setCoLife, setName, setPhotos, setGender, setReligion, setAbout, setSocialLinks } from "@/Store/slices/profileSlice";
 import { useUpdateUserInfoMutation } from "@/Store/api/profileApi";
+import {useUpdateMetricMutation} from "@/Store/api/metricsApi";
 
 const Step3: FC = () => {
   const router = useRouter();
@@ -16,6 +17,7 @@ const Step3: FC = () => {
   const profile = useSelector((state: RootState) => state.profile);
   const [isInitialized, setIsInitialized] = useState<boolean>(false);
   const [updateUserInfo] = useUpdateUserInfoMutation();
+  const [updateMetric] = useUpdateMetricMutation();
 
   useEffect(() => {
     const savedProfileStep3 = JSON.parse(localStorage.getItem('profileStep3') || '{}');
@@ -59,7 +61,8 @@ const Step3: FC = () => {
       metrics: profile.coLife
     };
     try {
-      updateUserInfo(updatedProfile).unwrap();
+      updateUserInfo(updatedProfile.hobby).unwrap();
+      updateMetric(updatedProfile.metrics).unwrap()
       localStorage.removeItem('profileStep1');
       localStorage.removeItem('profileStep2');
       localStorage.removeItem('profileStep3');
