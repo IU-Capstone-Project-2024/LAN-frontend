@@ -1,6 +1,8 @@
 "use client";
 import React, { useState } from 'react';
 import styles from '../../Styles/SettingsPage/ThemeSelector.module.scss';
+import Link from "next/link";
+import Image from "next/image";
 
 type Theme = 'light' | 'dark' | 'custom';
 
@@ -14,10 +16,13 @@ const ThemeSelector: React.FC = () => {
   return (
     <div className={styles.container}>
       <div className={styles.header}>
+        <Link href="/settings" className={styles.backButton}>
+          <Image src="/arrow_back.svg" alt="Back" width={24} height={24} layout="fixed"/>
+        </Link>
         <h1 className={styles.title}>Тема приложения</h1>
       </div>
       <div className={styles.themeOptions}>
-        <div className={`${styles.option} ${selectedTheme === 'light' ? styles.selected : ''}`} onClick={() => handleThemeChange('light')}>
+      <div className={`${styles.option} ${selectedTheme === 'light' ? styles.selected : ''}`} onClick={() => handleThemeChange('light')}>
           <img src="/light_theme.svg" alt="Светлая тема" className={styles.icon} />
           <span>Светлая</span>
           {selectedTheme === 'light' && <div className={styles.indicator}></div>}

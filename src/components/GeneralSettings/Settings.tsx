@@ -27,7 +27,7 @@ const SettingsPage = () => {
   return (
     <div className={styles.container}>
       <Link href="/" className={styles.backButton}>
-        <Image src="arrow_back.svg" alt="Back" width={24} height={24} layout="fixed" />
+        <Image src="/arrow_back.svg" alt="Back" width={24} height={24} layout="fixed" />
         <h1 className={styles.headerTitle}>{t('appSettings')}</h1>
       </Link>
       <div className={styles.profile}>
@@ -36,8 +36,10 @@ const SettingsPage = () => {
       </div>
       <ul className={styles.menu}>
         <li>
-          <span className={styles.menuText}>Тема приложения</span>
-          <div className={styles.arrow}></div>
+          <Link href="/settings/theme-selector" className={`${styles.menuLink} ${styles.noLinkStyle}`}>
+            <span className={styles.menuText}>{t('themeSettings')}</span>
+            <div className={styles.arrow}></div>
+          </Link>
         </li>
         <li>
           <span className={styles.menuText}>{t('notificationSettings')}</span>

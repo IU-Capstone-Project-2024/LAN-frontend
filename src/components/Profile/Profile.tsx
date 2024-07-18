@@ -2,7 +2,7 @@
 
 import React, { FC, useEffect, useState } from 'react';
 import { useRouter } from 'next/navigation';
-import styles from '../../Styles/Profile/profile.module.scss';
+import styles from '@/Styles/Profile/profile.module.scss';
 import 'react-responsive-carousel/lib/styles/carousel.min.css';
 import ProfileInfo from "@/components/UniversalComponents/ProfileInfo/ProfileInfo";
 import ProfileHeader from "@/components/UniversalComponents/ProfileHeader/ProfileHeader";
