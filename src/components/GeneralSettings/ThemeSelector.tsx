@@ -15,12 +15,10 @@ const ThemeSelector: React.FC = () => {
 
   return (
     <div className={styles.container}>
-      <div className={styles.header}>
         <Link href="/settings" className={styles.backButton}>
           <Image src="/arrow_back.svg" alt="Back" width={24} height={24} layout="fixed"/>
+          <h1>Тема приложения</h1>
         </Link>
-        <h1 className={styles.title}>Тема приложения</h1>
-      </div>
       <div className={styles.themeOptions}>
       <div className={`${styles.option} ${selectedTheme === 'light' ? styles.selected : ''}`} onClick={() => handleThemeChange('light')}>
           <img src="/light_theme.svg" alt="Светлая тема" className={styles.icon} />

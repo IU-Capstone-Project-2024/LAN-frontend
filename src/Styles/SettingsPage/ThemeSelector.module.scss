@@ -5,18 +5,24 @@
     color: #fff;
   }
   
-  .header {
-    margin-bottom: 40px;
-  }
+  .backButton {
+    display: flex;
+    justify-content: left;
+    align-items: center;
+    color: #fff; 
+    font-size: 24px; 
+    padding: 15px; 
+    gap: 15px;
+    margin-top: 10px;
+    margin-right: 40px;
   
-  .title {
-    font-size: 18px; 
-    margin-top: 20px;
-
   }
+
+
   .themeOptions {
     display: flex;
     justify-content: center;
+    margin-top: 30px;
   }
   
   .option {

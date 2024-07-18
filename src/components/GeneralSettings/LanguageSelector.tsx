@@ -18,22 +18,25 @@ const LanguageSelector: React.FC = () => {
       <div className={styles.languageSelector}>
         <Link href="/settings" className={styles.backButton}>
           <Image src="/arrow_back.svg" alt="Back" width={24} height={24} layout="fixed"/>
+          <h1>{t('language')}</h1>
         </Link>
-        <h1>{t('language')}</h1>
-        <div
-            className={`${styles.languageOption} ${i18n.language === 'ru' ? styles.selected : ''}`}
-            onClick={() => handleLanguageChange('ru')}
-        >
-          {('Русский')}
-          {i18n.language === 'ru' && <span className={styles.indicator}>●</span>}
+        <div className={styles.languagesContainer}>
+          <div
+              className={`${styles.languageOption} ${i18n.language === 'ru' ? styles.selected : ''}`}
+              onClick={() => handleLanguageChange('ru')}
+          >
+            {('Русский')}
+            {i18n.language === 'ru' && <span className={styles.indicator}>●</span>}
+          </div>
+          <div
+              className={`${styles.languageOption} ${i18n.language === 'en' ? styles.selected : ''}`}
+              onClick={() => handleLanguageChange('en')}
+          >
+            {('English')}
+            {i18n.language === 'en' && <span className={styles.indicator}>●</span>}
+          </div>
         </div>
-        <div
-            className={`${styles.languageOption} ${i18n.language === 'en' ? styles.selected : ''}`}
-            onClick={() => handleLanguageChange('en')}
-        >
-          {('English')}
-          {i18n.language === 'en' && <span className={styles.indicator}>●</span>}
-        </div>
+        
       </div>
   );
 };
