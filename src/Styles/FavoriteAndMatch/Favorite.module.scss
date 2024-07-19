@@ -1,12 +1,11 @@
 .favoritesContainer {
   display: grid;
   grid-template-columns: repeat(2, 1fr); // Две колонки равной ширины
-  gap: 20px; // Расстояние между элементами
-  padding: 10px; // Отступ вокруг контейнера
+  gap: 23px; // Расстояние между элементами
+  padding: 30px; // Отступ вокруг контейнера
   overflow-y: scroll;
   -ms-overflow-style: none;
   scrollbar-width: none;
-  margin-top: 20px;
 }
 
 

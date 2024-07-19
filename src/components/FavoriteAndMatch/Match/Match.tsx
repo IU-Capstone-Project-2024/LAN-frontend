@@ -22,15 +22,19 @@ const Matches: FC = () => {
       }
   
     return (
-      <div className={styles.matchesContainer}>
-        {matches.map((match) => (
-          <div key={match.id} className={styles.matchItem}>
-            <img src={match.image} alt={match.name} />
-            <p>{match.name}</p>
+        <>
+          <div className={styles.matchesContainer}>
+            {matches.map((match) => (
+                <div key={match.id} className={styles.matchItem}>
+                  <img src={match.image} alt={match.name}/>
+                  <p>{match.name}</p>
+                </div>
+            ))}
           </div>
-        ))}
-      </div>
+          <span className={styles.line}></span>
+        </>
+
     );
-  };
-  
-  export default Matches;
+};
+
+export default Matches;
